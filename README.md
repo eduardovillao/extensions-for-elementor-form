@@ -1,7 +1,5 @@
 # Extensiona for Elementor Form
 
-## Description
-
 Extensions for Elementor Form create many actions and controls to Elementor Form widget. This plugin require the Elementor Pro (Form Widget).
 
 * Send form to WhatsApp - After form submitted send fields to WhatsApp number (redirect to WhatsApp). [Video demo](https://www.youtube.com/watch?v=OjEChAW2gGc)
