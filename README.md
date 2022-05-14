@@ -22,23 +22,21 @@ Please, send to me: [plugins@eduardovillao.me](mailto:plugins@eduardovillao.me)
 
 ## Changelog ==
 ```
-= 1.3.1 =
+= 1.3.6 =
+* Changed: Compatibility with WordPress 6.0.
 
+= 1.3.1 =
 * Compatibility with WordPress 5.7.
 
 = 1.3 =
-
 * Fixed hide form after submit.
 
 = 1.2 =
-
 * Add support for break line with token %break%.
 
 = 1.1 =
-
 * Fix bug on phone number.
 
 = 1.0 =
-
 * Initial release.
 ```
