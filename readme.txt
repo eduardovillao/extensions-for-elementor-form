@@ -2,10 +2,10 @@
 Contributors: EVCODE
 Donate link: https://eduardovillao.me/
 Tags: elementor, elementor form, elementor plugins, form
-Requires at least: 4.9
-Tested up to: 5.7
-Stable tag: 1.3.5
-Requires PHP: 5.6
+Requires at least: 5.4
+Tested up to: 6.0
+Stable tag: 1.3.6
+Requires PHP: 7.0
 License: GPLv2License 
 URI:https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -55,22 +55,20 @@ Please, send to me: [plugins@eduardovillao.me](mailto:plugins@eduardovillao.me)
 
 == Changelog ==
 
-= 1.3.1 =
+= 1.3.6 =
+* Changed: Compatibility with WordPress 6.0.
 
+= 1.3.1 =
 * Compatibility with WordPress 5.7.
 
 = 1.3 =
-
 * Fixed hide form after submit.
 
 = 1.2 =
-
 * Add support for break line with token %break%.
 
 = 1.1 =
-
 * Fix bug on phone number.
 
 = 1.0 =
-
 * Initial release.
