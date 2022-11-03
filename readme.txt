@@ -3,8 +3,8 @@ Contributors: EVCODE
 Donate link: https://eduardovillao.me/
 Tags: elementor, elementor form, elementor plugins, form
 Requires at least: 5.4
-Tested up to: 6.0
-Stable tag: 1.3.6
+Tested up to: 6.1
+Stable tag: 1.3.7
 Requires PHP: 7.0
 License: GPLv2License 
 URI:https://www.gnu.org/licenses/gpl-2.0.html
@@ -54,6 +54,9 @@ Please, send to me: [plugins@eduardovillao.me](mailto:plugins@eduardovillao.me)
 == Screenshots ==
 
 == Changelog ==
+
+= 1.3.7 =
+* Changed: Compatibility with WordPress 6.1.
 
 = 1.3.6 =
 * Changed: Compatibility with WordPress 6.0.
