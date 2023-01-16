@@ -9,47 +9,53 @@ Requires PHP: 7.0
 License: GPLv2License 
 URI:https://www.gnu.org/licenses/gpl-2.0.html
 
-Extensions for Elementor Form create many actions and controls to Elementor Form widget. This plugin require the Elementor Pro (Form Widget).
+Extensions for Elementor Form create many new actions and controls to default Elementor Form widget. 
+
+> This plugin require Elementor Pro version (Form Widget).
 
 == Description ==
 
-Extensions for Elementor Form create many actions and controls to Elementor Form widget. This plugin require the Elementor Pro (Form Widget).
+#### Available Extensions ####
 
-#### Extensions Available (FREE VERSION) ####
+* Send form message to WhatsApp - After form is submitted send fields message directo to WhatsApp. [Video demo](https://www.youtube.com/watch?v=OjEChAW2gGc)
 
-* Send form to WhatsApp - After form submitted send fields to WhatsApp number. [Video demo](https://www.youtube.com/watch?v=OjEChAW2gGc)
+* Hide form after success submit. [Video demo](https://www.youtube.com/watch?v=CMN32j4hGlA)
 
-* Hide form - Hide form after success submit. [Video demo](https://www.youtube.com/watch?v=CMN32j4hGlA)
+* Custom Success Message - Create a custom template message to show after form is submitted. [Video demo](https://www.youtube.com/watch?v=CMN32j4hGlA)
 
-* Custom Success Message - Create a template to show after form submit success. [Video demo](https://www.youtube.com/watch?v=CMN32j4hGlA)
+* Search in select input - Add search capability to select input. (Soon!)
 
-* Search in select - Add search in select field. (Coming soon!)
+* Register Post and Custom Post - Use the form to create posts or custom posts direct from the website front end. (Soon!)
 
-* Register Post and Custom Post - Use the form to create posts or custom posts in front end. (Coming soon!)
+== Do you know my other plugins? ==
 
-== More plugins? ==
-
-Check my other plugins: [WordPress Plugins](https://eduardovillao.me/wordpress-plugins/)
+Discover [my plugins](https://eduardovillao.me/wordpress-plugins/)
 
 == WordPress Tips? ==
 
-Check my blog: [WordPress Tips](https://eduardovillao.me/blog/)
+Access [my blog](https://eduardovillao.me/blog/)
 
-== Plugins Suggestions? ==
+== Plugins Suggestions/requests? ==
 
-Please, send to me: [plugins@eduardovillao.me](mailto:plugins@eduardovillao.me)
+Please, send me a message: [plugins@eduardovillao.me](mailto:plugins@eduardovillao.me)
 
 == Installation ==
 
-1. Upload the plugin files to the WordPress
+1. Download the plugin from WP directory.
 
-2. Activate the plugin in WordPress
+2. Activate the plugin.
 
-3. Go to Widget Elementor Pro in your page
-
-4. Select the options and actions to run in your form
+3. Go to Elementor editor's page and use Form widget to use the extensions options.
 
 == Frequently Asked Questions ==
+
+= This plugin requires Elementor Pro version? =
+
+Yes! As this is a extensions for Elementor Form widget it will work only widget Elementor Pro version.
+
+= This plugin works with other widgets forms, like JetEngine and other? =
+
+No! This extensions will be work only with Elementor plugin.
 
 == Screenshots ==
 
