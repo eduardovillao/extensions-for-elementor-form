@@ -9,11 +9,11 @@ Requires PHP: 7.0
 License: GPLv2License 
 URI:https://www.gnu.org/licenses/gpl-2.0.html
 
+== Description ==
+
 Extensions for Elementor Form create many new actions and controls to default Elementor Form widget. 
 
 > This plugin require Elementor Pro version (Form Widget).
-
-== Description ==
 
 #### Available Extensions ####
 
