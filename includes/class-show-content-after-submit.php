@@ -4,10 +4,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
 
+/**
+ * Custom message on success class.
+ */
 class Evcode_Elementor_Custom_Sucess_Message {
-
 	public function __construct() {
-		// Add class attribute to form field render
 		add_action( 'elementor/widget/before_render_content', [ $this, 'evcode_add_message_class' ] );
 		add_action( 'elementor/element/form/section_integration/after_section_end', [ $this, 'evcode_add_message_control' ], 100, 2 );
 	}
@@ -18,8 +19,6 @@ class Evcode_Elementor_Custom_Sucess_Message {
 	 * @param $args
 	 */
 	public function evcode_add_message_control ( $element, $args ) {
-
-
 		$element->start_controls_section(
 			'evcode_message_template',
 			[
@@ -54,33 +53,37 @@ class Evcode_Elementor_Custom_Sucess_Message {
 		);
 
 		$element->end_controls_section();
-
 	}
 
+	/**
+	 * Add custom class to message.
+	 *
+	 * @param [type] $form
+	 * @return void
+	 */
 	public function evcode_add_message_class ( $form ) {
-
 		if( 'form' === $form->get_name() ) {
-    		
     		$settings = $form->get_settings();
 
     		add_action( 'elementor-pro/forms/pre_render', [ $this, 'template_message' ] );
     
     		if( 'yes' == $settings['hide_form_after_submit'] ) {
-
       			$form->add_render_attribute( 'wrapper', 'class', 'ele-extensions-hide-form', true );
     		}
   		}
 	}
 
+	/**
+	 * Custom temlate message.
+	 *
+	 * @param [type] $instance
+	 * @return void
+	 */
 	public function template_message ( $instance ) {
-
-		if ( !$instance['template-custom-sucess-message'] == '' ) {
-
-			echo '<div class="extensions-for-elementor-form custom-sucess-message">'.do_shortcode( $instance['template-custom-sucess-message'] ).'</div>';
-
+		if ( ! $instance['template-custom-sucess-message'] == '' ) {
+			echo '<div class="extensions-for-elementor-form custom-sucess-message">' . do_shortcode( $instance['template-custom-sucess-message'] ) . '</div>';
 		}
 	}
-
 }
 
 new Evcode_Elementor_Custom_Sucess_Message();

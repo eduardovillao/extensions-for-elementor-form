@@ -4,7 +4,7 @@ Donate link: https://eduardovillao.me/
 Tags: elementor, elementor form, elementor plugins, form
 Requires at least: 5.4
 Tested up to: 6.1
-Stable tag: 1.3.7
+Stable tag: 2.0
 Requires PHP: 7.0
 License: GPLv2License 
 URI:https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,6 +60,10 @@ No! This extensions will be work only with Elementor plugin.
 == Screenshots ==
 
 == Changelog ==
+
+= 2.0 =
+* New: action to register post/custom post with form.
+* Changed: code improvements.
 
 = 1.3.7 =
 * Changed: Compatibility with WordPress 6.1.

@@ -1,16 +1,22 @@
 <?php
 
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
-add_action( 'elementor_pro/init', function() {
-	// Here its safe to include our action class file
-	require( dirname(__FILE__).'/includes/class-whatsapp-action.php' );
+/**
+ * Add new form action after form submission.
+ *
+ * @since 2.0
+ * @param ElementorPro\Modules\Forms\Registrars\Form_Actions_Registrar $form_actions_registrar
+ * @return void
+ */
+function eef_register_custom_action( $form_actions_registrar ) {
+	include_once EEF_PLUGIN_PATH . '/includes/class-whatsapp-action.php';
+	include_once EEF_PLUGIN_PATH . '/includes/class-register-post.php';
 
-	// Instantiate the action class
-	$whats_action = new Whatsapp_Action_After_Submit;
+	$form_actions_registrar->register( new Eef\Includes\Whatsapp_Action_After_Submit() );
+	$form_actions_registrar->register( new \Eef\Includes\Register_Post() );
+}
 
-	// Register the action with form widget
-	\ElementorPro\Plugin::instance()->modules_manager->get_modules( 'forms' )->add_form_action( $whats_action->get_name(), $whats_action );
-});
+add_action( 'elementor_pro/forms/actions/register', 'eef_register_custom_action' );

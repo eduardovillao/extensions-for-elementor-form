@@ -1,7 +1,9 @@
 <?php
 
+namespace Eef\Includes;
+
 if ( ! defined( 'ABSPATH' ) ) {
-	exit; // Exit if accessed directly
+	exit;
 }
 
 /**
@@ -9,17 +11,14 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Custom elementor form action after submit to redirect to whatsapp
  * Whatsapp_Action_After_Submit
  */
-
 class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 	/**
 	 * Get Name
 	 *
 	 * Return the action name
 	 *
-	 * @access public
 	 * @return string
 	 */
-
 	public function get_name() {
 		return 'whatsapp';
 	}
@@ -29,12 +28,10 @@ class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\A
 	 *
 	 * Returns the action label
 	 *
-	 * @access public
 	 * @return string
 	 */
-
 	public function get_label() {
-		return __( 'WhatsApp', 'whatsapp-redirect' );
+		return 'WhatsApp';
 	}
 
 	/**
@@ -42,15 +39,13 @@ class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\A
 	 *
 	 * Registers the Action controls
 	 *
-	 * @access public
 	 * @param \Elementor\Widget_Base $widget
 	 */
-
 	public function register_settings_section( $widget ) {
 		$widget->start_controls_section(
 			'section_whatsapp-redirect',
 			[
-				'label' => __( 'WhatsApp Redirect', 'whatsapp-redirect' ),
+				'label' => __( 'WhatsApp Redirect', 'extensions-for-elementor-form' ),
 				'condition' => [
 					'submit_actions' => $this->get_name(),
 				],
@@ -60,42 +55,38 @@ class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\A
 		$widget->add_control(
 			'whatsapp_to',
 			[
-				'label' => __( 'WhatsApp Phone', 'whatsapp-redirect' ),
+				'label' => __( 'WhatsApp Phone', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'placeholder' => __( '13459999999', 'whatsapp-redirect' ),
+				'placeholder' => __( '13459999999', 'extensions-for-elementor-form' ),
 				'label_block' => true,
 				'render_type' => 'none',
 				'classes' => 'elementor-control-whats-phone-direction-ltr',
-				'description' => __( 'Phone with country code, like: 5551999999999', 'whatsapp-redirect' ),
+				'description' => __( 'Phone with country code, like: 5551999999999', 'extensions-for-elementor-form' ),
 			]
 		);
 
 		$widget->add_control(
 			'whatsapp_message',
 			[
-				'label' => __( 'WhatsApp Message', 'whatsapp-redirect' ),
+				'label' => __( 'WhatsApp Message', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Write yout text or use fields shortcode', 'whatsapp-redirect' ),
+				'placeholder' => __( 'Write yout text or use fields shortcode', 'extensions-for-elementor-form' ),
 				'label_block' => true,
 				'render_type' => 'none',
 				'classes' => 'elementor-control-whats-direction-ltr',
-				'description' => __( 'Use fields shortcodes for send form data os write your custom text.<br>=> For add break line use: %break%', 'whatsapp-redirect' ),
+				'description' => __( 'Use fields shortcodes for send form data os write your custom text.<br>=> To add break line use token: %break%', 'extensions-for-elementor-form' ),
 			]
 		);
 
 		$widget->end_controls_section();
-
 	}
-
 
 	/**
 	 * On Export
 	 *
 	 * Clears form settings on export
-	 * @access Public
 	 * @param array $element
 	 */
-
 	public function on_export( $element ) {
 		unset(
 			$element['settings']['whatsapp_to'],
@@ -105,15 +96,12 @@ class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\A
 		return $element;
 	}
 
-
 	/**
 	 * Runs the action after submit
 	 *
-	 * @access public
 	 * @param \ElementorPro\Modules\Forms\Classes\Form_Record $record
 	 * @param \ElementorPro\Modules\Forms\Classes\Ajax_Handler $ajax_handler
 	 */
-
 	public function run( $record, $ajax_handler ) {
 		$whatsapp_to = $record->get_form_settings( 'whatsapp_to' );
 		$whatsapp_message = $record->get_form_settings( 'whatsapp_message' );
@@ -126,7 +114,5 @@ class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\A
 		if ( ! empty( $whatsapp_to ) ) {
 			$ajax_handler->add_response_data( 'redirect_url', $whatsapp_to );
 		}
-
 	}
-
 }
