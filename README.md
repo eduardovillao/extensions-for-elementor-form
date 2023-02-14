@@ -22,6 +22,10 @@ Please, send to me: [plugins@eduardovillao.me](mailto:plugins@eduardovillao.me)
 
 ## Changelog ==
 ```
+= 2.0 =
+* New: action to register post/custom post with form.
+* Changed: code improvements.
+
 = 1.3.6 =
 * Changed: Compatibility with WordPress 6.0.
 
