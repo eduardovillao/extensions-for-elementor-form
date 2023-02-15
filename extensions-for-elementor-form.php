@@ -17,6 +17,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use ElementorPro\Plugin;
+use ElementorPro\Modules\ThemeBuilder\Module;
+
 define( 'EEF_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EEF_PLUGN_URL', plugin_dir_url( __FILE__ ) );
 define( 'EEF_VERSION', '2.0' );
@@ -49,7 +52,7 @@ function eef_init_plugin() {
 		return;
 	}
 
-	include_once EEF_PLUGIN_PATH . '/init-whatsapp-action.php';
+	include_once EEF_PLUGIN_PATH . '/init-custom-actions.php';
 	include_once EEF_PLUGIN_PATH . '/includes/class-show-content-after-submit.php';
 
 	add_action( 'wp_enqueue_scripts', 'eef_register_plugin_assets' );

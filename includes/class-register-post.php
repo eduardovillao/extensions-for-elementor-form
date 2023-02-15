@@ -18,7 +18,7 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 	 * @return string
 	 */
 	public function get_name() {
-		return 'register-post';
+		return 'eef-register-post';
 	}
 
 	/**
@@ -51,22 +51,12 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 		);
 
         /**
-         * 1. Post status.
-         * 2. Add or edit existent post.
-         * 3. Post terms (taxonomy).
-         * 4. Redirect to post after submit/created?.
+         * TODO:
+         * 1. Add or edit existent post.
+         * 2. Post terms (taxonomy).
+         * 3. Redirect to post after submit/created?.
+         * 4. Se post status === private add campo de senha.
          */
-
-        // $widget->add_control(
-		// 	'eef-register-post-note',
-		// 	[
-		// 		'label' => esc_html__( 'Important', 'extensions-for-elementor-form' ),
-		// 		'type' => \Elementor\Controls_Manager::RAW_HTML,
-		// 		'raw' => esc_html__( 'For security reasons this action will works only to logged in users.', 'extensions-for-elementor-form' ),
-		// 		'content_classes' => 'your-class',
-		// 	]
-		// );
-
 		$widget->add_control(
 			'eef-register-post-post-type',
 			[
@@ -77,7 +67,33 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 					'post'  => esc_html__( 'Post', 'extensions-for-elementor-form' ),
 					'page' => esc_html__( 'Page', 'extensions-for-elementor-form' ),
 				],
-				'description' => __( 'Select the Post Type to receive the form data.', 'extensions-for-elementor-form' ),
+			]
+		);
+
+        $widget->add_control(
+			'eef-register-post-post-status',
+			[
+				'label' => __( 'Post Status', 'extensions-for-elementor-form' ),
+				'type' => \Elementor\Controls_Manager::SELECT,
+                'default' => 'draft',
+				'options' => [
+					'draft'  => esc_html__( 'Draft', 'extensions-for-elementor-form' ),
+					'publish' => esc_html__( 'Publish', 'extensions-for-elementor-form' ),
+                    'pending' => esc_html__( 'Pending', 'extensions-for-elementor-form' ),
+				],
+			]
+		);
+
+        $widget->add_control(
+			'eef-register-post-user-permission',
+			[
+				'label' => esc_html__( 'Run only to logged in users', 'extensions-for-elementor-form' ),
+				'type' => \Elementor\Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'extensions-for-elementor-form' ),
+				'label_off' => esc_html__( 'No', 'extensions-for-elementor-form' ),
+				'return_value' => 'yes',
+				'default' => 'yes',
+				'description' => __( 'Warning: Save data from not logged in users can be a security risk', 'extensions-for-elementor-form' ),
 			]
 		);
 
@@ -106,7 +122,29 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 	 * @param \ElementorPro\Modules\Forms\Classes\Ajax_Handler $ajax_handler
 	 */
 	public function run( $record, $ajax_handler ) {
+		$form_fields = $record->get( 'fields' );
+		$fields_settings = $record->get_form_settings( 'form_fields' );
+		$formated_fields = array();
+		foreach ( $fields_settings as $key => $field ) {
+			$formated_fields[ $key ] = $form_fields[ $field['custom_id'] ];
+			$formated_fields[ $key ]['field-to-register'] = $field['eef-register-post-field'];
+			$formated_fields[ $key ]['custom-field-to-register'] = $field['eef-register-post-custom-field'];
+		}
 
+		print_r( $formated_fields );
+		return;
+
+		$post_data = array(
+			'post_title' => '123',
+			'post_content' => '456',
+			'post_status' => 'draft'
+		);
+
+		$post_id = wp_insert_post( $post_data );
+		if ( is_wp_error( $post_id ) ) {
+			return 'WP Error';
+		}
+		//sanitize_post();
 
 		// $whatsapp_to = $record->get_form_settings( 'whatsapp_to' );
 		// $whatsapp_message = $record->get_form_settings( 'whatsapp_message' );
