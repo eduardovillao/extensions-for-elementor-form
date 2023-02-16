@@ -44,18 +44,17 @@ class Register_Create_Post_Fields {
 			'tab' => 'content',
 			'tabs_wrapper' => 'form_fields_tabs',
 			'inner_tab' => 'form_fields_advanced_tab',
+			'classes' => 'elementor-hidden-control',
             'description' => __( 'Use this input to define what post field will receive this data when post is registered', 'extensions-for-elementor-form' ),
             'default' => 'select',
             'options' => [
                 'select' => __( 'Select', 'extensions-for-elementor-form' ),
                 'post_title' => __( 'Post Title', 'extensions-for-elementor-form' ),
                 'post_content' => __( 'Post Content', 'extensions-for-elementor-form' ),
-                'post_excerpt' => __( 'Post Excerpt', 'extensions-for-elementor-form' ),
+				'post_excerpt' => __( 'Post Excerpt', 'extensions-for-elementor-form' ),
+				'post_author' => __( 'Post Author', 'extensions-for-elementor-form' ),
                 'custom_field' => __( 'Custom Field', 'extensions-for-elementor-form' ),
             ],
-			// 'condition' => [
-				// 	'submit_actions' => 'eef-register-post',
-			// ],
 		];
 
         $new_control_2 = [

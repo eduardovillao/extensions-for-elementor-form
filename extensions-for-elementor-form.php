@@ -54,18 +54,6 @@ function eef_init_plugin() {
 
 	include_once EEF_PLUGIN_PATH . '/init-custom-actions.php';
 	include_once EEF_PLUGIN_PATH . '/includes/class-show-content-after-submit.php';
-
-	add_action( 'wp_enqueue_scripts', 'eef_register_plugin_assets' );
-}
-
-/**
- * Register style (temp. code)
- * 
- * @since 2.0
- */
-function eef_register_plugin_assets() {
-	wp_enqueue_script( 'eef-frontend-script', EEF_PLUGN_URL . 'assets/script.js', array( 'jquery' ), EEF_VERSION );
-	wp_enqueue_style( 'eef-frontend-style',  EEF_PLUGN_URL . 'assets/style.css', array(), EEF_VERSION );
 }
 
 /**
