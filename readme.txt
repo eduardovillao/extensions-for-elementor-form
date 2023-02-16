@@ -1,7 +1,7 @@
 === Extensions for Elementor Form ===
 Contributors: EVCODE
 Donate link: https://eduardovillao.me/
-Tags: elementor, elementor form, elementor plugins, form
+Tags: elementor, elementor form, elementor plugins, form, register post, register custom post type
 Requires at least: 5.4
 Tested up to: 6.1
 Stable tag: 2.0
