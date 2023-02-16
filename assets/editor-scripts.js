@@ -5,7 +5,6 @@ window.addEventListener('load', (e) => {
     }
 
     const observer = new MutationObserver((mutations, observer) => {
-        console.log('mudou');
         const actionRegisterPostSection = eefElementorPanelEditor.querySelector('.elementor-control-eef-register-post-section');
         if (!actionRegisterPostSection) {
             return;
