@@ -6,7 +6,7 @@
  * Author: EduardoVillao.me
  * Author URI: https://eduardovillao.me/
  * Text Domain: extensions-for-elementor-form
- * Version: 2.0
+ * Version: 2.0.1
  * Requires at least: 5.5
  * Requires PHP: 7.0
  * License: GPL-2.0+
@@ -22,7 +22,7 @@ use ElementorPro\Modules\ThemeBuilder\Module;
 
 define( 'EEF_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EEF_PLUGN_URL', plugin_dir_url( __FILE__ ) );
-define( 'EEF_VERSION', '2.0' );
+define( 'EEF_VERSION', '2.0.1' );
 define( 'EEF_PHP_MINIMUM_VERSION', '7.0' );
 define( 'EEF_WP_MINIMUM_VERSION', '5.5' );
 
@@ -43,7 +43,7 @@ if ( ! version_compare( PHP_VERSION, EEF_PHP_MINIMUM_VERSION, '>=' ) ) {
 
 /**
  * Init plugin (temp. code)
- * 
+ *
  * @since 2.0
  */
 function eef_init_plugin() {
@@ -92,7 +92,7 @@ function eef_admin_notice_wp_version_fail() {
 
 /**
  * Admin notice Elementor Pro disabled
- * 
+ *
  * @since 2.0
  * @return string
  */
@@ -109,7 +109,7 @@ function eef_notice_elementor_pro_inactive() {
 
 /**
  * Check if plugin is active
- * 
+ *
  * @since 2.0
  */
 function eef_plugin_is_active( $plugin_name ) {

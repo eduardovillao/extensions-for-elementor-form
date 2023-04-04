@@ -1,0 +1,15 @@
+.DS_Store
+.git
+.github
+LICENSE
+README.md
+.editorconfig
+.gitignore
+.distignore
+/node_modules
+package.json
+package-lock.json
+/vendor
+composer.json
+composer.lock
+gulpfile.js

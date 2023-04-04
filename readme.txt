@@ -3,15 +3,15 @@ Contributors: EVCODE
 Donate link: https://eduardovillao.me/
 Tags: elementor, elementor form, elementor plugins, form, register post, register custom post type
 Requires at least: 5.4
-Tested up to: 6.1
-Stable tag: 2.0
+Tested up to: 6.2
+Stable tag: 2.0.1
 Requires PHP: 7.0
-License: GPLv2License 
+License: GPLv2License
 URI:https://www.gnu.org/licenses/gpl-2.0.html
 
 == Description ==
 
-Extensions for Elementor Form create many new actions and controls to default Elementor Form widget. 
+Extensions for Elementor Form create many new actions and controls to default Elementor Form widget.
 
 > This plugin require Elementor Pro version (Form Widget).
 
@@ -60,6 +60,9 @@ No! This extensions will be work only with Elementor plugin.
 == Screenshots ==
 
 == Changelog ==
+
+= 2.0.1 =
+* Changed: compatibility with WordPress 6.2
 
 = 2.0 =
 * New: action to register post/custom post with form.

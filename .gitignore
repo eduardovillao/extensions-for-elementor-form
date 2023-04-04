@@ -1,1 +1,12 @@
 .DS_Store
+phpcs.xml
+phpunit.xml
+Thumbs.db
+wp-cli.local.yml
+node_modules/
+package-lock.json
+vendor/
+composer.lock
+*.sql
+*.tar.gz
+*.zip
