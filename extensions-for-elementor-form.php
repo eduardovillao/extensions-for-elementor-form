@@ -6,7 +6,7 @@
  * Author: EduardoVillao.me
  * Author URI: https://eduardovillao.me/
  * Text Domain: extensions-for-elementor-form
- * Version: 2.0.2
+ * Version: 2.0.3
  * Requires at least: 5.5
  * Requires PHP: 7.0
  * License: GPL-2.0+
@@ -22,7 +22,7 @@ use ElementorPro\Modules\ThemeBuilder\Module;
 
 define( 'EEF_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EEF_PLUGN_URL', plugin_dir_url( __FILE__ ) );
-define( 'EEF_VERSION', '2.0.2' );
+define( 'EEF_VERSION', '2.0.3' );
 define( 'EEF_PHP_MINIMUM_VERSION', '7.0' );
 define( 'EEF_WP_MINIMUM_VERSION', '5.5' );
 

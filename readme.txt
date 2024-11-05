@@ -3,8 +3,8 @@ Contributors: EVCODE
 Donate link: https://eduardovillao.me/
 Tags: elementor, elementor form, elementor plugins, form, register post, register custom post type
 Requires at least: 5.5
-Tested up to: 6.5
-Stable tag: 2.0.2
+Tested up to: 6.7
+Stable tag: 2.0.3
 Requires PHP: 7.0
 License: GPLv2License
 URI:https://www.gnu.org/licenses/gpl-2.0.html
@@ -60,6 +60,10 @@ No! This extensions will be work only with Elementor plugin.
 == Screenshots ==
 
 == Changelog ==
+
+= 2.0.3 =
+* Changed: compatibility with WordPress 6.7
+* Changed: code improvements
 
 = 2.0.2 =
 * Changed: compatibility with WordPress 6.5
