@@ -45,7 +45,7 @@ class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\A
 		$widget->start_controls_section(
 			'section_whatsapp-redirect',
 			[
-				'label' => __( 'WhatsApp Redirect', 'extensions-for-elementor-form' ),
+				'label' => \esc_html__( 'WhatsApp Redirect', 'extensions-for-elementor-form' ),
 				'condition' => [
 					'submit_actions' => $this->get_name(),
 				],
@@ -55,26 +55,32 @@ class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\A
 		$widget->add_control(
 			'whatsapp_to',
 			[
-				'label' => __( 'WhatsApp Phone', 'extensions-for-elementor-form' ),
+				'label' => \esc_html__( 'WhatsApp Phone', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::TEXT,
-				'placeholder' => __( '13459999999', 'extensions-for-elementor-form' ),
+				'placeholder' => \esc_html__( '13459999999', 'extensions-for-elementor-form' ),
 				'label_block' => true,
 				'render_type' => 'none',
 				'classes' => 'elementor-control-whats-phone-direction-ltr',
-				'description' => __( 'Phone with country code, like: 5551999999999', 'extensions-for-elementor-form' ),
+				'description' => \esc_html__( 'Phone with country code, like: 5551999999999', 'extensions-for-elementor-form' ),
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 
 		$widget->add_control(
 			'whatsapp_message',
 			[
-				'label' => __( 'WhatsApp Message', 'extensions-for-elementor-form' ),
+				'label' => \esc_html__( 'WhatsApp Message', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::TEXTAREA,
-				'placeholder' => __( 'Write yout text or use fields shortcode', 'extensions-for-elementor-form' ),
+				'placeholder' => \esc_html__( 'Write yout text or use fields shortcode', 'extensions-for-elementor-form' ),
 				'label_block' => true,
 				'render_type' => 'none',
 				'classes' => 'elementor-control-whats-direction-ltr',
-				'description' => __( 'Use fields shortcodes for send form data os write your custom text.<br>=> To add break line use token: %break%', 'extensions-for-elementor-form' ),
+				'description' => \esc_html__( 'Use fields shortcodes for send form data os write your custom text.<br>=> To add break line use token: %break%', 'extensions-for-elementor-form' ),
+				'dynamic' => [
+					'active' => true,
+				],
 			]
 		);
 

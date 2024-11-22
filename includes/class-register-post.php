@@ -39,7 +39,7 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 		$registered_post_types = get_post_types( array( 'public' => true ), 'objects' );
 		$post_type_options =  array();
 		foreach ( $registered_post_types as $post_type ) {
-			$post_type_options[ $post_type->name ] = $post_type->label; 
+			$post_type_options[ $post_type->name ] = $post_type->label;
 		}
 
 		return $post_type_options;
@@ -56,7 +56,7 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 		$widget->start_controls_section(
 			'eef-register-post-section',
 			[
-				'label' => __( 'Register Post/Custom Post', 'extensions-for-elementor-form' ),
+				'label' => \esc_html__( 'Register Post/Custom Post', 'extensions-for-elementor-form' ),
 				'condition' => [
 					'submit_actions' => $this->get_name(),
 				],
@@ -73,7 +73,7 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 		$widget->add_control(
 			'eef-register-post-post-type',
 			[
-				'label' => __( 'Post Type', 'extensions-for-elementor-form' ),
+				'label' => \esc_html__( 'Post Type', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'post',
 				'options' => $this->get_registered_post_types(),
@@ -83,13 +83,13 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         $widget->add_control(
 			'eef-register-post-post-status',
 			[
-				'label' => __( 'Post Status', 'extensions-for-elementor-form' ),
+				'label' => \esc_html__( 'Post Status', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
                 'default' => 'draft',
 				'options' => [
-					'draft'  => esc_html__( 'Draft', 'extensions-for-elementor-form' ),
-					'publish' => esc_html__( 'Publish', 'extensions-for-elementor-form' ),
-                    'pending' => esc_html__( 'Pending', 'extensions-for-elementor-form' ),
+					'draft'  => \esc_html__( 'Draft', 'extensions-for-elementor-form' ),
+					'publish' => \esc_html__( 'Publish', 'extensions-for-elementor-form' ),
+                    'pending' => \esc_html__( 'Pending', 'extensions-for-elementor-form' ),
 				],
 			]
 		);
@@ -97,13 +97,13 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
         $widget->add_control(
 			'eef-register-post-user-permission',
 			[
-				'label' => esc_html__( 'Run only to logged in users?', 'extensions-for-elementor-form' ),
+				'label' => \esc_html__( 'Run only to logged in users?', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'extensions-for-elementor-form' ),
-				'label_off' => esc_html__( 'No', 'extensions-for-elementor-form' ),
+				'label_on' => \esc_html__( 'Yes', 'extensions-for-elementor-form' ),
+				'label_off' => \esc_html__( 'No', 'extensions-for-elementor-form' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
-				'description' => __( 'Warning: Save data from not logged in users can be a security risk', 'extensions-for-elementor-form' ),
+				'description' => \esc_html__( 'Warning: Save data from not logged in users can be a security risk', 'extensions-for-elementor-form' ),
 			]
 		);
 
@@ -157,14 +157,14 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 				$custom_fields_to_register[ $field['custom-field-to-register'] ] = $field['value'];
 			}
 		}
-		
+
 		$is_restrict_to_loggedin_users = $record->get_form_settings( 'eef-register-post-user-permission' );
 		if ( $is_restrict_to_loggedin_users !== 'yes' ) {
 			$post_id = wp_insert_post( $new_post_data, true );
 			if ( ! is_wp_error( $post_id ) ) {
 				foreach ( $custom_fields_to_register as $meta_key => $meta_value ) {
 					add_post_meta( $post_id, $meta_key, $meta_value );
-				}	
+				}
 			}
 			return;
 		}
@@ -174,7 +174,7 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 			if ( ! is_wp_error( $post_id ) ) {
 				foreach ( $custom_fields_to_register as $meta_key => $meta_value ) {
 					add_post_meta( $post_id, $meta_key, $meta_value );
-				}	
+				}
 			}
 		}
 	}
