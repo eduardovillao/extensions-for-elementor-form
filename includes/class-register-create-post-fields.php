@@ -12,7 +12,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Register custom field inside a form repeater (advanced tab) if action is enabled.
- * 
+ *
  * @since 2.0
  */
 class Register_Create_Post_Fields {
@@ -25,7 +25,7 @@ class Register_Create_Post_Fields {
 
 	/**
 	 * Add create post fields
-	 * 
+	 *
 	 * @since 2.0
 	 * @param $element
 	 * @param $args
@@ -39,37 +39,37 @@ class Register_Create_Post_Fields {
 		}
 
 		$new_control = [
-			'label' => __( 'Field to Register', 'extensions-for-elementor-form' ),
+			'label' => \esc_html__( 'Field to Register', 'extensions-for-elementor-form' ),
 			'type' => ElementorControls::SELECT,
 			'tab' => 'content',
 			'tabs_wrapper' => 'form_fields_tabs',
 			'inner_tab' => 'form_fields_advanced_tab',
 			'classes' => 'elementor-hidden-control',
-            'description' => __( 'Use this input to define what post field will receive this data when post is registered', 'extensions-for-elementor-form' ),
+            'description' => \esc_html__( 'Use this input to define what post field will receive this data when post is registered', 'extensions-for-elementor-form' ),
             'default' => 'select',
             'options' => [
-                'select' => __( 'Select', 'extensions-for-elementor-form' ),
-                'post_title' => __( 'Post Title', 'extensions-for-elementor-form' ),
-                'post_content' => __( 'Post Content', 'extensions-for-elementor-form' ),
-				'post_excerpt' => __( 'Post Excerpt', 'extensions-for-elementor-form' ),
-				'post_author' => __( 'Post Author', 'extensions-for-elementor-form' ),
-                'custom_field' => __( 'Custom Field', 'extensions-for-elementor-form' ),
+                'select' => \esc_html__( 'Select', 'extensions-for-elementor-form' ),
+                'post_title' => \esc_html__( 'Post Title', 'extensions-for-elementor-form' ),
+                'post_content' => \esc_html__( 'Post Content', 'extensions-for-elementor-form' ),
+				'post_excerpt' => \esc_html__( 'Post Excerpt', 'extensions-for-elementor-form' ),
+				'post_author' => \esc_html__( 'Post Author', 'extensions-for-elementor-form' ),
+                'custom_field' => \esc_html__( 'Custom Field', 'extensions-for-elementor-form' ),
             ],
 		];
 
         $new_control_2 = [
-			'label' => __( 'Custom Field Name', 'extensions-for-elementor-form' ),
+			'label' => \esc_html__( 'Custom Field Name', 'extensions-for-elementor-form' ),
 			'type' => ElementorControls::TEXT,
-            'placeholder' => __( 'custom_field_name', 'extensions-for-elementor-form' ),
+            'placeholder' => \esc_html__( 'custom_field_name', 'extensions-for-elementor-form' ),
 			'tab' => 'content',
 			'tabs_wrapper' => 'form_fields_tabs',
 			'inner_tab' => 'form_fields_advanced_tab',
-            'description' => __( 'Add the Custom Field name here. You can use default fields or custom created with ACF or similars', 'extensions-for-elementor-form' ),
+            'description' => \esc_html__( 'Add the Custom Field name here. You can use default fields or custom created with ACF or similars', 'extensions-for-elementor-form' ),
 			'condition' => [
 					'eef-register-post-field' => 'custom_field',
 			],
 		];
-		
+
 		$mask_control = new ElementorRepeater();
 		$mask_control->add_control( 'eef-register-post-field', $new_control );
 		$mask_control->add_control( 'eef-register-post-custom-field', $new_control_2 );
@@ -77,7 +77,7 @@ class Register_Create_Post_Fields {
 
 		/**
 		 * Register control in form advanced tab.
-		 * 
+		 *
 		 * @since 2.0
 		 */
 		$this->register_control_in_form_advanced_tab( $element, $control_data, $pattern_field );
@@ -90,7 +90,7 @@ class Register_Create_Post_Fields {
 	 * @param array $control_data
 	 * @param array $pattern_field
 	 * @return void
-	 * 
+	 *
 	 * @since 2.0
 	 */
 	public function register_control_in_form_advanced_tab( $element, $control_data, $pattern_field ) {

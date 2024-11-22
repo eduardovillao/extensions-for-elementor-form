@@ -22,33 +22,33 @@ class Evcode_Elementor_Custom_Sucess_Message {
 		$element->start_controls_section(
 			'evcode_message_template',
 			[
-				'label' => __( 'Custom Sucess Message', 'extensions_elementor_form' ),
+				'label' => \esc_html__( 'Custom Sucess Message', 'extensions_elementor_form' ),
 			]
 		);
 
 		$element->add_control(
 			'hide_form_after_submit',
 			[
-				'label' => __( 'Hide form after submit?', 'extensions_elementor_form' ),
+				'label' => \esc_html__( 'Hide form after submit?', 'extensions_elementor_form' ),
 				'type' => \Elementor\Controls_Manager::SWITCHER,
-				'label_on' => __( 'Hide', 'extensions_elementor_form' ),
-				'label_off' => __( 'Show', 'extensions_elementor_form' ),
+				'label_on' => \esc_html__( 'Hide', 'extensions_elementor_form' ),
+				'label_off' => \esc_html__( 'Show', 'extensions_elementor_form' ),
 				'return_value' => 'yes',
 				'default' => 'yes',
-				'description' => __( 'This option hide the form after sucess submit.', 'extensions_elementor_form' ),
+				'description' => \esc_html__( 'This option hide the form after sucess submit.', 'extensions_elementor_form' ),
 			]
 		);
 
 		$element->add_control(
 			'template-custom-sucess-message',
 			[
-				'label' => __( 'Message Template', 'extensions_elementor_form' ),
+				'label' => \esc_html__( 'Message Template', 'extensions_elementor_form' ),
 				'type' => Elementor\Controls_Manager::TEXT,
-				'placeholder' => __( '[your-shortcode-here]', 'extensions_elementor_form' ),
+				'placeholder' => \esc_html__( '[your-shortcode-here]', 'extensions_elementor_form' ),
 				'label_block' => true,
 				'render_type' => 'none',
 				'classes' => 'elementor_control_message_control-ltr',
-				'description' => __( 'Paste shortcode for your sucess message template.', 'extensions_elementor_form' ),
+				'description' => \esc_html__( 'Paste shortcode for your sucess message template.', 'extensions_elementor_form' ),
 			]
 		);
 
@@ -66,7 +66,7 @@ class Evcode_Elementor_Custom_Sucess_Message {
     		$settings = $form->get_settings();
 
     		add_action( 'elementor-pro/forms/pre_render', [ $this, 'template_message' ] );
-    
+
     		if( 'yes' == $settings['hide_form_after_submit'] ) {
       			$form->add_render_attribute( 'wrapper', 'class', 'ele-extensions-hide-form', true );
     		}
