@@ -6,10 +6,10 @@
  * Author: EduardoVillao.me
  * Author URI: https://eduardovillao.me/
  * Text Domain: extensions-for-elementor-form
- * Version: 2.1
+ * Version: 2.2
  * Requires at least: 5.5
  * Requires PHP: 7.4
- * License: GPL v2 or later
+ * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
  * Requires Plugins: elementor-pro
  */
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 define( 'EEF_PLUGIN_PATH', plugin_dir_path( __FILE__ ) );
 define( 'EEF_PLUGN_URL', plugin_dir_url( __FILE__ ) );
-define( 'EEF_VERSION', '2.1' );
+define( 'EEF_VERSION', '2.2' );
 define( 'EEF_PHP_MINIMUM_VERSION', '7.4' );
 define( 'EEF_WP_MINIMUM_VERSION', '5.5' );
 
