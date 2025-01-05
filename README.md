@@ -1,4 +1,4 @@
-# Extensiona for Elementor Form
+# Extensions for Elementor Form
 
 Extensions for Elementor Form adds powerful new actions and controls to the Elementor Pro Form widget, enhancing its default capabilities.
 
