@@ -1,0 +1,29 @@
+{
+  "name": "extensions-for-elementor-form",
+  "version": "2.1",
+  "description": "WordPress Plugin",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-dev": "npm install && composer install && ./vendor/bin/phpcs --config-set installed_paths vendor/wp-coding-standards/wpcs/ && ./vendor/bin/phpcs --config-set default_standard WordPress",
+    "build": "webpack"
+  },
+  "keywords": [
+    "wordpress",
+    "delivery"
+  ],
+  "author": "EduardoVillao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eduardovillao/myd-delivery-pro/issues"
+  },
+  "homepage": "https://github.com/eduardovillao/myd-delivery-pro#readme",
+  "devDependencies": {
+    "@wordpress/eslint-plugin": "^18.0.0",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.0",
+    "esbuild-loader": "^4.1.0",
+    "mini-css-extract-plugin": "^2.9.0",
+    "webpack": "^5.91.0",
+    "webpack-cli": "^5.1.4"
+  }
+}
