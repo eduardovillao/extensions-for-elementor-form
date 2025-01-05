@@ -2,7 +2,7 @@
 /**
  * Plugin Name: Extensions for Elementor Form
  * Plugin URI: https://eduardovillao.me/extensions-for-elementor-form
- * Description: Extensions for Elementor Form create many actions and controls to Elementor Form. This plugin require the Elementor Pro (Form Widget).
+ * Description: This plugin empowers your Elementor Forms with advanced functionality that simplifies workflows, improves usability, and integrates seamlessly with tools like WhatsApp.
  * Author: EduardoVillao.me
  * Author URI: https://eduardovillao.me/
  * Text Domain: extensions-for-elementor-form
@@ -30,12 +30,10 @@ define( 'EEF_WP_MINIMUM_VERSION', '5.5' );
  */
 if ( ! version_compare( PHP_VERSION, EEF_PHP_MINIMUM_VERSION, '>=' ) ) {
 	add_action( 'admin_notices', 'eef_admin_notice_php_version_fail' );
-
 } elseif ( ! version_compare( get_bloginfo( 'version' ), EEF_WP_MINIMUM_VERSION, '>=' ) ) {
 	add_action( 'admin_notices', 'eef_admin_notice_wp_version_fail' );
-
 } else {
-    add_action( 'plugins_loaded', 'eef_init_plugin', 10 );
+	add_action( 'plugins_loaded', 'eef_init_plugin', 10 );
 }
 
 /**
@@ -50,7 +48,7 @@ function eef_init_plugin() {
 	}
 
 	include_once EEF_PLUGIN_PATH . '/init-custom-actions.php';
-	include_once EEF_PLUGIN_PATH . '/includes/class-show-content-after-submit.php';
+	include_once EEF_PLUGIN_PATH . '/includes/class-custom-success-message.php';
 }
 
 /**
