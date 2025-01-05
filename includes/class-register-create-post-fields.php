@@ -16,9 +16,9 @@ if ( ! defined( 'ABSPATH' ) ) {
  * @since 2.0
  */
 class Register_Create_Post_Fields {
-    /**
-     * Contructor...
-     */
+	/**
+	 * Contructor.
+	 */
 	public function __construct() {
 		add_action( 'elementor/element/form/section_form_fields/before_section_end', [ $this, 'add_control_fields' ], 100, 2 );
 	}
@@ -45,26 +45,26 @@ class Register_Create_Post_Fields {
 			'tabs_wrapper' => 'form_fields_tabs',
 			'inner_tab' => 'form_fields_advanced_tab',
 			'classes' => 'elementor-hidden-control',
-            'description' => \esc_html__( 'Use this input to define what post field will receive this data when post is registered', 'extensions-for-elementor-form' ),
-            'default' => 'select',
-            'options' => [
-                'select' => \esc_html__( 'Select', 'extensions-for-elementor-form' ),
-                'post_title' => \esc_html__( 'Post Title', 'extensions-for-elementor-form' ),
-                'post_content' => \esc_html__( 'Post Content', 'extensions-for-elementor-form' ),
+			'description' => \esc_html__( 'Use this input to define what post field will receive this data when post is registered', 'extensions-for-elementor-form' ),
+			'default' => 'select',
+			'options' => [
+				'select' => \esc_html__( 'Select', 'extensions-for-elementor-form' ),
+				'post_title' => \esc_html__( 'Post Title', 'extensions-for-elementor-form' ),
+				'post_content' => \esc_html__( 'Post Content', 'extensions-for-elementor-form' ),
 				'post_excerpt' => \esc_html__( 'Post Excerpt', 'extensions-for-elementor-form' ),
 				'post_author' => \esc_html__( 'Post Author', 'extensions-for-elementor-form' ),
-                'custom_field' => \esc_html__( 'Custom Field', 'extensions-for-elementor-form' ),
-            ],
+				'custom_field' => \esc_html__( 'Custom Field', 'extensions-for-elementor-form' ),
+			],
 		];
 
-        $new_control_2 = [
+		$new_control_2 = [
 			'label' => \esc_html__( 'Custom Field Name', 'extensions-for-elementor-form' ),
 			'type' => ElementorControls::TEXT,
-            'placeholder' => \esc_html__( 'custom_field_name', 'extensions-for-elementor-form' ),
+			'placeholder' => \esc_html__( 'custom_field_name', 'extensions-for-elementor-form' ),
 			'tab' => 'content',
 			'tabs_wrapper' => 'form_fields_tabs',
 			'inner_tab' => 'form_fields_advanced_tab',
-            'description' => \esc_html__( 'Add the Custom Field name here. You can use default fields or custom created with ACF or similars', 'extensions-for-elementor-form' ),
+			'description' => \esc_html__( 'Add the Custom Field name here. You can use default fields or custom created with ACF or similars', 'extensions-for-elementor-form' ),
 			'condition' => [
 					'eef-register-post-field' => 'custom_field',
 			],

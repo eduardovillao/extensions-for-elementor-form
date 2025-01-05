@@ -63,38 +63,38 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 			]
 		);
 
-        /**
-         * TODO:
-         * 1. Add or edit existent post.
-         * 2. Post terms (taxonomy).
-         * 3. Redirect to post after submit/created?.
-         * 4. Se post status === private add campo de senha.
-         */
+		/**
+		 * TODO:
+		 * 1. Add or edit existent post.
+		 * 2. Post terms (taxonomy).
+		 * 3. Redirect to post after submit/created?.
+		 * 4. Se post status === private add campo de senha.
+		 */
 		$widget->add_control(
 			'eef-register-post-post-type',
 			[
 				'label' => \esc_html__( 'Post Type', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'post',
+				'default' => 'post',
 				'options' => $this->get_registered_post_types(),
 			]
 		);
 
-        $widget->add_control(
+		$widget->add_control(
 			'eef-register-post-post-status',
 			[
 				'label' => \esc_html__( 'Post Status', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'draft',
+				'default' => 'draft',
 				'options' => [
 					'draft'  => \esc_html__( 'Draft', 'extensions-for-elementor-form' ),
 					'publish' => \esc_html__( 'Publish', 'extensions-for-elementor-form' ),
-                    'pending' => \esc_html__( 'Pending', 'extensions-for-elementor-form' ),
+					'pending' => \esc_html__( 'Pending', 'extensions-for-elementor-form' ),
 				],
 			]
 		);
 
-        $widget->add_control(
+		$widget->add_control(
 			'eef-register-post-user-permission',
 			[
 				'label' => \esc_html__( 'Run only to logged in users?', 'extensions-for-elementor-form' ),
