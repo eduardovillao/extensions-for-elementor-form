@@ -39,8 +39,8 @@ new Register_Create_Post_Fields();
  * @since 2.0
  */
 function eef_register_plugin_assets() {
-	wp_enqueue_script( 'eef-frontend-script', EEF_PLUGN_URL . 'assets/frontend-scripts.min.js', array( 'jquery' ), EEF_VERSION );
-	wp_enqueue_style( 'eef-frontend-style',  EEF_PLUGN_URL . 'assets/style.min.css', array(), EEF_VERSION );
+	wp_enqueue_script( 'eef-frontend-script', EEF_PLUGN_URL . 'assets/js/frontend-scripts.min.js', array( 'jquery' ), EEF_VERSION );
+	wp_enqueue_style( 'eef-frontend-style',  EEF_PLUGN_URL . 'assets/css/style.min.css', array(), EEF_VERSION );
 }
 
 add_action( 'wp_enqueue_scripts', 'eef_register_plugin_assets' );
@@ -51,7 +51,7 @@ add_action( 'wp_enqueue_scripts', 'eef_register_plugin_assets' );
  * @since 2.0
  */
 function eef_register_editor_scripts() {
-	wp_register_script( 'eef-editor-scripts', EEF_PLUGN_URL . 'assets/editor-scripts.min.js', array(), EEF_VERSION );
+	wp_register_script( 'eef-editor-scripts', EEF_PLUGN_URL . 'assets/js/editor-scripts.min.js', array(), EEF_VERSION );
 	wp_enqueue_script( 'eef-editor-scripts' );
 }
 
