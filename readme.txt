@@ -9,35 +9,41 @@ Requires PHP: 7.4
 License: GPL-2.0+
 URI:https://www.gnu.org/licenses/gpl-2.0.html
 
+This plugin empowers your Elementor Forms with advanced functionality that simplifies workflows, improves usability, and integrates seamlessly with tools like WhatsApp.
+
 == Description ==
 
-Extensions for Elementor Form create many new actions and controls to default Elementor Form widget.
+Extensions for Elementor Form adds powerful new actions and controls to the Elementor Pro Form widget, enhancing its default capabilities.
 
-> This plugin require Elementor Pro version (Form Widget).
+📢 Get started today and elevate your Elementor Form experience!
 
-#### Available Extensions ####
+**Note: plugin requires Elementor Pro version (Form Widget).**
 
-* Send form message to WhatsApp - After form is submitted send fields message directo to WhatsApp. [Video demo](https://www.youtube.com/watch?v=OjEChAW2gGc)
+**Features Available in the Free Version**
 
-* Hide form after success submit. [Video demo](https://www.youtube.com/watch?v=CMN32j4hGlA)
+* **Send Form Messages to WhatsApp:** Automatically send form field data directly to WhatsApp after the form is submitted.
+[👉 Video demo](https://www.youtube.com/watch?v=OjEChAW2gGc)
+* **Register Posts and Custom Post Types:** Use the Elementor Form widget to create posts or custom post types directly from the website front end.
+[👉 Video demo](https://www.youtube.com/watch?v=fNIoWyXF9js)
+* **Hide Form After Successful Submission:** Automatically hide the form once the submission is successful.
+[👉 Video demo](https://www.youtube.com/watch?v=CMN32j4hGlA)
+* **Custom Success Message:** Create and display a custom message template after the form is successfully submitted.
+[👉 Video demo](https://www.youtube.com/watch?v=CMN32j4hGlA)
 
-* Custom Success Message - Create a custom template message to show after form is submitted. [Video demo](https://www.youtube.com/watch?v=CMN32j4hGlA)
+**🎉 Pro Version Coming Soon!**
+The Pro version will bring even more advanced features, enhanced integrations, and premium support to help you unlock the full potential of Elementor Forms. Stay tuned for updates!
 
-* Search in select input - Add search capability to select input. (Soon!)
+== More Plugins by Us ==
 
-* Register Post and Custom Post - Use the form to create posts or custom posts direct from the website front end. (Soon!)
+Discover other plugins to enhance your WordPress experience:: [WordPress Plugins](https://eduardovillao.me/wordpress-plugins/)
 
-== Do you know my other plugins? ==
+== Learn WordPress Tips ==
 
-Discover [my plugins](https://eduardovillao.me/wordpress-plugins/)
+Visit our blog for expert WordPress insights: [WordPress Tips](https://eduardovillao.me/blog/)
 
-== WordPress Tips? ==
+== Plugins Suggestions? ==
 
-Access [my blog](https://eduardovillao.me/blog/)
-
-== Plugins Suggestions/requests? ==
-
-Please, send me a message: [plugins@eduardovillao.me](mailto:plugins@eduardovillao.me)
+We’d love to hear from you! [plugins@eduardovillao.me](mailto:plugins@eduardovillao.me)
 
 == Installation ==
 
