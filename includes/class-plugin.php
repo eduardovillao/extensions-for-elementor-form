@@ -6,6 +6,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use EEF\Includes\Actions\Register_Actions;
+use EEF\Includes\Custom_Success_Message;
+
 /**
  * Plugin main class
  */
@@ -60,27 +63,51 @@ final class Plugin {
 
 		$this->load_required_files();
 
+		$actions = array(
+			'whatsapp_redirect' => array(
+				'relative_path' => '/includes/actions/class-whatsapp-redirect.php',
+				'class_name' => 'Whatsapp_Redirect',
+			),
+			'register_post' => array(
+				'relative_path' => '/includes/actions/class-register-post.php',
+				'class_name' => 'Register_Post',
+			),
+		);
+		$regiser_actions = new Register_Actions( $actions );
+		$regiser_actions->set_hooks();
+
 		$custom_success_message = new Custom_Success_Message();
 		$custom_success_message->set_hooks();
+
+		\add_action( 'elementor/editor/after_enqueue_scripts', array( $this, 'register_editor_scripts') );
+		\add_action( 'wp_enqueue_scripts', array( $this, 'enqueue_frondend_scripts' ) );
 	}
 
 	/**
 	 * Load required files
 	 */
 	public function load_required_files() : void {
-		include_once EEF_PLUGIN_PATH . '/includes/init-custom-actions.php';
+		include_once EEF_PLUGIN_PATH . '/includes/actions/class-register-actions.php';
 		include_once EEF_PLUGIN_PATH . '/includes/class-custom-success-message.php';
 	}
 
 	/**
-	 * Enqueu admin styles/scripts
-	 */
-	public function enqueue_admin_scripts() : void {}
-
-	/**
 	 * Enqueue front end styles/scripts
 	 */
-	public function enqueue_frondend_scripts() : void {}
+	public function enqueue_frondend_scripts() : void {
+		wp_enqueue_script( 'eef-frontend-script', EEF_PLUGN_URL . 'assets/js/frontend-scripts.min.js', array( 'jquery' ), EEF_VERSION );
+		wp_enqueue_style( 'eef-frontend-style',  EEF_PLUGN_URL . 'assets/css/style.min.css', array(), EEF_VERSION );
+	}
+
+	/**
+	 * Register custom scritps on Elementor editor
+	 *
+	 * @since 2.0
+	 */
+	function register_editor_scripts() : void {
+		wp_register_script( 'eef-editor-scripts', EEF_PLUGN_URL . 'assets/js/editor-scripts.min.js', array(), EEF_VERSION );
+		wp_enqueue_script( 'eef-editor-scripts' );
+	}
 
 	/**
 	 * Check Elementor Pro loaded
