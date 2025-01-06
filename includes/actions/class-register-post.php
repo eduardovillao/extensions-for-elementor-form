@@ -1,15 +1,22 @@
 <?php
 
-namespace Eef\Includes;
+namespace EEF\Includes\Actions;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
+use \Elementor\Plugin as ElementorPlugin;
+use \Elementor\Controls_Manager as ElementorControls;
+use \Elementor\Repeater as ElementorRepeater;
+
 /**
  * Register post after form submit.
  */
 class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
+	public function __construct() {
+		\add_action( 'elementor/element/form/section_form_fields/before_section_end', array( $this, 'add_control_fields' ), 100, 2 );
+	}
 	/**
 	 * Get Name
 	 *
@@ -63,38 +70,38 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 			]
 		);
 
-        /**
-         * TODO:
-         * 1. Add or edit existent post.
-         * 2. Post terms (taxonomy).
-         * 3. Redirect to post after submit/created?.
-         * 4. Se post status === private add campo de senha.
-         */
+		/**
+		 * TODO:
+		 * 1. Add or edit existent post.
+		 * 2. Post terms (taxonomy).
+		 * 3. Redirect to post after submit/created?.
+		 * 4. Se post status === private add campo de senha.
+		 */
 		$widget->add_control(
 			'eef-register-post-post-type',
 			[
 				'label' => \esc_html__( 'Post Type', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'post',
+				'default' => 'post',
 				'options' => $this->get_registered_post_types(),
 			]
 		);
 
-        $widget->add_control(
+		$widget->add_control(
 			'eef-register-post-post-status',
 			[
 				'label' => \esc_html__( 'Post Status', 'extensions-for-elementor-form' ),
 				'type' => \Elementor\Controls_Manager::SELECT,
-                'default' => 'draft',
+				'default' => 'draft',
 				'options' => [
 					'draft'  => \esc_html__( 'Draft', 'extensions-for-elementor-form' ),
 					'publish' => \esc_html__( 'Publish', 'extensions-for-elementor-form' ),
-                    'pending' => \esc_html__( 'Pending', 'extensions-for-elementor-form' ),
+					'pending' => \esc_html__( 'Pending', 'extensions-for-elementor-form' ),
 				],
 			]
 		);
 
-        $widget->add_control(
+		$widget->add_control(
 			'eef-register-post-user-permission',
 			[
 				'label' => \esc_html__( 'Run only to logged in users?', 'extensions-for-elementor-form' ),
@@ -177,5 +184,87 @@ class Register_Post extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 				}
 			}
 		}
+	}
+
+	/**
+	 * Add create post fields
+	 *
+	 * @param $element
+	 * @param $args
+	 */
+	public function add_control_fields( $element, $args ) {
+		$elementor = ElementorPlugin::instance();
+		$control_data = $elementor->controls_manager->get_control_from_stack( $element->get_name(), 'form_fields' );
+
+		if ( is_wp_error( $control_data ) ) {
+			return;
+		}
+
+		$new_control = [
+			'label' => \esc_html__( 'Field to Register', 'extensions-for-elementor-form' ),
+			'type' => ElementorControls::SELECT,
+			'tab' => 'content',
+			'tabs_wrapper' => 'form_fields_tabs',
+			'inner_tab' => 'form_fields_advanced_tab',
+			'classes' => 'elementor-hidden-control',
+			'description' => \esc_html__( 'Use this input to define what post field will receive this data when post is registered', 'extensions-for-elementor-form' ),
+			'default' => 'select',
+			'options' => [
+				'select' => \esc_html__( 'Select', 'extensions-for-elementor-form' ),
+				'post_title' => \esc_html__( 'Post Title', 'extensions-for-elementor-form' ),
+				'post_content' => \esc_html__( 'Post Content', 'extensions-for-elementor-form' ),
+				'post_excerpt' => \esc_html__( 'Post Excerpt', 'extensions-for-elementor-form' ),
+				'post_author' => \esc_html__( 'Post Author', 'extensions-for-elementor-form' ),
+				'custom_field' => \esc_html__( 'Custom Field', 'extensions-for-elementor-form' ),
+			],
+		];
+
+		$new_control_2 = [
+			'label' => \esc_html__( 'Custom Field Name', 'extensions-for-elementor-form' ),
+			'type' => ElementorControls::TEXT,
+			'placeholder' => \esc_html__( 'custom_field_name', 'extensions-for-elementor-form' ),
+			'tab' => 'content',
+			'tabs_wrapper' => 'form_fields_tabs',
+			'inner_tab' => 'form_fields_advanced_tab',
+			'description' => \esc_html__( 'Add the Custom Field name here. You can use default fields or custom created with ACF or similars', 'extensions-for-elementor-form' ),
+			'condition' => [
+					'eef-register-post-field' => 'custom_field',
+			],
+		];
+
+		$mask_control = new ElementorRepeater();
+		$mask_control->add_control( 'eef-register-post-field', $new_control );
+		$mask_control->add_control( 'eef-register-post-custom-field', $new_control_2 );
+		$pattern_field = $mask_control->get_controls();
+
+		/**
+		 * Register control in form advanced tab.
+		 */
+		$this->register_control_in_form_advanced_tab( $element, $control_data, $pattern_field );
+	}
+
+	/**
+	 * Register control in form advanced tab
+	 *
+	 * @param object $element
+	 * @param array $control_data
+	 * @param array $pattern_field
+	 */
+	public function register_control_in_form_advanced_tab( $element, $control_data, $pattern_field ) {
+		foreach( $pattern_field as $key => $control ) {
+			if( $key !== '_id' ) {
+				$new_order = [];
+				foreach ( $control_data['fields'] as $field_key => $field ) {
+					if ( 'field_value' === $field['name'] ) {
+						$new_order[$key] = $control;
+					}
+					$new_order[ $field_key ] = $field;
+				}
+
+				$control_data['fields'] = $new_order;
+			}
+		}
+
+		return $element->update_control( 'form_fields', $control_data );
 	}
 }

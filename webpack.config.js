@@ -94,8 +94,4 @@ const generalCSS = {
 	],
 };
 
-module.exports = [
-	adminJs,
-	generalJs,
-	generalCSS,
-];
+module.exports = [adminJs, generalJs, generalCSS];
