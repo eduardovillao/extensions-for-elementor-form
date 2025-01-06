@@ -4,9 +4,17 @@ if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
-use Eef\Includes\Register_Create_Post_Fields;
-use Eef\Includes\Whatsapp_Action_After_Submit;
-use Eef\Includes\Register_Post;
+use EEF\Includes\Actions\Whatsapp_Redirect;
+use EEF\Includes\Actions\Register_Post;
+use EEF\Includes\Actions\Register_Post_Fields_Controls;
+
+/**
+ * Register custom field to form repeater
+ */
+include_once EEF_PLUGIN_PATH . '/includes/actions/class-register-post-fields-controls.php';
+$register_post_fields_controls = new Register_Post_Fields_Controls();
+$register_post_fields_controls->set_hooks();
+
 
 /**
  * Add new form action after form submission.
@@ -16,22 +24,14 @@ use Eef\Includes\Register_Post;
  * @return void
  */
 function eef_register_custom_action( $form_actions_registrar ) {
-	include_once EEF_PLUGIN_PATH . '/includes/class-whatsapp-action.php';
-	include_once EEF_PLUGIN_PATH . '/includes/class-register-post.php';
+	include_once EEF_PLUGIN_PATH . '/includes/actions/class-whatsapp-redirect.php';
+	include_once EEF_PLUGIN_PATH . '/includes/actions/class-register-post.php';
 
-	$form_actions_registrar->register( new Whatsapp_Action_After_Submit() );
+	$form_actions_registrar->register( new Whatsapp_Redirect() );
 	$form_actions_registrar->register( new Register_Post() );
 }
 
-add_action( 'elementor_pro/forms/actions/register', 'eef_register_custom_action' );
-
-/**
- * Register custom field to form repeater
- *
- * @since 2.0
- */
-include_once EEF_PLUGIN_PATH . '/includes/class-register-create-post-fields.php';
-new Register_Create_Post_Fields();
+add_action( 'elementor_pro/forms/actions/register', 'eef_register_custom_action', -10 );
 
 /**
  * Register frontend assets

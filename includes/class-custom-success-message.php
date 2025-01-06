@@ -1,6 +1,6 @@
 <?php
 
-namespace Eef\Includes;
+namespace EEF\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
@@ -10,9 +10,12 @@ if ( ! defined( 'ABSPATH' ) ) {
  * Custom message on success class.
  */
 class Custom_Success_Message {
-	public function __construct() {
-		add_action( 'elementor/widget/before_render_content', [ $this, 'add_message_class' ] );
-		add_action( 'elementor/element/form/section_integration/after_section_end', [ $this, 'add_message_control' ], 100, 2 );
+	/**
+	 * Set required hooks
+	 */
+	public function set_hooks() : void {
+		add_action( 'elementor/widget/before_render_content', array( $this, 'add_message_class' ) );
+		add_action( 'elementor/element/form/section_integration/after_section_end', array( $this, 'add_message_control' ), 100, 2 );
 	}
 
 	/**
@@ -61,7 +64,6 @@ class Custom_Success_Message {
 	 * Add custom class to message.
 	 *
 	 * @param [type] $form
-	 * @return void
 	 */
 	public function add_message_class ( $form ) {
 		if( 'form' === $form->get_name() ) {
@@ -79,7 +81,6 @@ class Custom_Success_Message {
 	 * Custom temlate message.
 	 *
 	 * @param [type] $instance
-	 * @return void
 	 */
 	public function template_message ( $instance ) {
 		if ( ! $instance['template-custom-sucess-message'] == '' ) {
@@ -87,5 +88,3 @@ class Custom_Success_Message {
 		}
 	}
 }
-
-new Custom_Success_Message();

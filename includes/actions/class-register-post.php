@@ -1,6 +1,6 @@
 <?php
 
-namespace Eef\Includes;
+namespace EEF\Includes\Actions;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

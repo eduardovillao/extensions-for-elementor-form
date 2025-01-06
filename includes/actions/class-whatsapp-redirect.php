@@ -1,17 +1,15 @@
 <?php
 
-namespace Eef\Includes;
+namespace EEF\Includes\Actions;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;
 }
 
 /**
- * Class Whatsapp_Action_After_Submit
- * Custom elementor form action after submit to redirect to whatsapp
- * Whatsapp_Action_After_Submit
+ * Class Whatsapp_Redirect
  */
-class Whatsapp_Action_After_Submit extends \ElementorPro\Modules\Forms\Classes\Action_Base {
+class Whatsapp_Redirect extends \ElementorPro\Modules\Forms\Classes\Action_Base {
 	/**
 	 * Get Name
 	 *

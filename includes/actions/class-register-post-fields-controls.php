@@ -1,6 +1,6 @@
 <?php
 
-namespace Eef\Includes;
+namespace EEF\Includes\Actions;
 
 use \Elementor\Plugin as ElementorPlugin;
 use \Elementor\Controls_Manager as ElementorControls;
@@ -12,21 +12,18 @@ if ( ! defined( 'ABSPATH' ) ) {
 
 /**
  * Register custom field inside a form repeater (advanced tab) if action is enabled.
- *
- * @since 2.0
  */
-class Register_Create_Post_Fields {
+class Register_Post_Fields_Controls {
 	/**
-	 * Contructor.
+	 * Set required hooks
 	 */
-	public function __construct() {
-		add_action( 'elementor/element/form/section_form_fields/before_section_end', [ $this, 'add_control_fields' ], 100, 2 );
+	public function set_hooks() : void {
+		\add_action( 'elementor/element/form/section_form_fields/before_section_end', [ $this, 'add_control_fields' ], 100, 2 );
 	}
 
 	/**
 	 * Add create post fields
 	 *
-	 * @since 2.0
 	 * @param $element
 	 * @param $args
 	 */
@@ -77,8 +74,6 @@ class Register_Create_Post_Fields {
 
 		/**
 		 * Register control in form advanced tab.
-		 *
-		 * @since 2.0
 		 */
 		$this->register_control_in_form_advanced_tab( $element, $control_data, $pattern_field );
 	}
@@ -90,8 +85,6 @@ class Register_Create_Post_Fields {
 	 * @param array $control_data
 	 * @param array $pattern_field
 	 * @return void
-	 *
-	 * @since 2.0
 	 */
 	public function register_control_in_form_advanced_tab( $element, $control_data, $pattern_field ) {
 		foreach( $pattern_field as $key => $control ) {
