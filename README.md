@@ -32,6 +32,10 @@ We’d love to hear from you! [plugins@eduardovillao.me](mailto:plugins@eduardov
 
 ## Changelog
 ```
+= 2.3 =
+* Changed: refactor code to support Pro version.
+* Changed: improve assets build process.
+
 = 2.2 =
 * Changed: code improvements.
 

@@ -4,7 +4,7 @@ Donate link: https://eduardovillao.me/
 Tags: elementor, elementor form, register custom post type, whatsapp
 Requires at least: 5.5
 Tested up to: 6.7
-Stable tag: 2.2
+Stable tag: 2.3
 Requires PHP: 7.4
 License: GPL-2.0+
 URI:https://www.gnu.org/licenses/gpl-2.0.html
@@ -66,6 +66,11 @@ No! This extensions will be work only with Elementor plugin.
 == Screenshots ==
 
 == Changelog ==
+
+= 2.3 =
+* Changed: refactor code to support Pro version.
+* Changed: improve assets build process.
+
 = 2.2 =
 * Changed: code improvements.
 
