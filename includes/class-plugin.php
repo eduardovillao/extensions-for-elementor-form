@@ -51,14 +51,22 @@ final class Plugin {
 		\do_action( 'extensions_for_elementor_form_load' );
 		\register_activation_hook( EEF_PLUGIN_MAIN_FILE, array( $this, 'activation' ) );
 		\register_deactivation_hook( EEF_PLUGIN_MAIN_FILE, array( $this, 'deactivation' ) );
-		\add_action( 'elementor/init', array( $this, 'init' ), 5 );
-		\add_action( 'wp_loaded', array( $this, 'check_elementor_pro_loaded' ) );
+		\add_action( 'init', array( $this, 'init' ), -10 );
 	}
 
 	/**
 	 * Init plugin
 	 */
 	public function init() : void {
+		if ( ! did_action( 'elementor/loaded' ) ) {
+			return;
+		}
+
+		if ( ! $this->plugin_is_active( 'elementor-pro/elementor-pro.php' ) ) {
+			\add_action( 'admin_notices', array( $this, 'notice_elementor_pro_inactive' ) );
+			return;
+		}
+
 		\do_action( 'extensions_for_elementor_form_init' );
 
 		$this->load_required_files();
@@ -110,15 +118,6 @@ final class Plugin {
 	}
 
 	/**
-	 * Check Elementor Pro loaded
-	 */
-	public function check_elementor_pro_loaded() : void {
-		if ( ! \did_action('elementor_pro/init') ) {
-			\add_action( 'admin_notices', array( $this, 'notice_elementor_pro_inactive' ) );
-		}
-	}
-
-	/**
 	 * Admin notice Elementor Pro disabled
 	 */
 	function notice_elementor_pro_inactive() {
@@ -130,6 +129,17 @@ final class Plugin {
 
 		$html_message = sprintf( '<div class="notice notice-error"><p>%1$s</p></div>', $message );
 		echo \wp_kses_post( $html_message );
+	}
+
+	/**
+	 * Check plugin is activated
+	 *
+	 * @since 1.5
+	 * @return boolean
+	 * @param string $plugin
+	 */
+	public function plugin_is_active( $plugin ) {
+		return function_exists( 'is_plugin_active' ) ? \is_plugin_active( $plugin ) : in_array( $plugin, (array) \get_option( 'active_plugins', array() ), true );
 	}
 
 	/**
