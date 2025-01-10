@@ -71,7 +71,7 @@ class Custom_Success_Message {
 
 			add_action( 'elementor-pro/forms/pre_render', [ $this, 'template_message' ] );
 
-			if( 'yes' == $settings['hide_form_after_submit'] ) {
+			if( 'yes' === $settings['hide_form_after_submit'] ) {
 				$form->add_render_attribute( 'wrapper', 'class', 'ele-extensions-hide-form', true );
 			}
 		}

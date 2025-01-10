@@ -35,7 +35,7 @@ if ( ! version_compare( PHP_VERSION, EEF_PHP_MINIMUM_VERSION, '>=' ) ) {
 	\add_action( 'admin_notices', 'eef_admin_notice_wp_version_fail' );
 } else {
 	include_once EEF_PLUGIN_PATH . '/includes/class-plugin.php';
-	\add_action( 'plugins_loaded', array( 'EEF\Includes\Plugin', 'instance' ), 10 );
+	EEF\Includes\Plugin::instance();
 }
 
 /**
