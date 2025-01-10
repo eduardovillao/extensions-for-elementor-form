@@ -52,7 +52,7 @@ final class Plugin {
 		\register_activation_hook( EEF_PLUGIN_MAIN_FILE, array( $this, 'activation' ) );
 		\register_deactivation_hook( EEF_PLUGIN_MAIN_FILE, array( $this, 'deactivation' ) );
 		\add_action( 'elementor/init', array( $this, 'init' ), 5 );
-		\add_action( 'wp_loaded', array( $this, 'check_elementor_pro_loaded' ) );
+		\add_action( 'wp_loaded', array( $this, 'notice_elementor_pro_inactive' ) );
 	}
 
 	/**
@@ -110,18 +110,13 @@ final class Plugin {
 	}
 
 	/**
-	 * Check Elementor Pro loaded
-	 */
-	public function check_elementor_pro_loaded() : void {
-		if ( ! \did_action('elementor_pro/init') ) {
-			\add_action( 'admin_notices', array( $this, 'notice_elementor_pro_inactive' ) );
-		}
-	}
-
-	/**
 	 * Admin notice Elementor Pro disabled
 	 */
 	function notice_elementor_pro_inactive() {
+		if ( \did_action('elementor_pro/init') ) {
+			return;
+		}
+
 		$message = sprintf(
 			\esc_html__( '%1$s requires %2$s to be installed and activated.', 'extensions-for-elementor-form' ),
 			'<strong>Extensions for Elementor Form</strong>',
