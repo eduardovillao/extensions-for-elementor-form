@@ -52,7 +52,7 @@ final class Plugin {
 		\register_activation_hook( EEF_PLUGIN_MAIN_FILE, array( $this, 'activation' ) );
 		\register_deactivation_hook( EEF_PLUGIN_MAIN_FILE, array( $this, 'deactivation' ) );
 		\add_action( 'elementor/init', array( $this, 'init' ), 5 );
-		\add_action( 'wp_loaded', array( $this, 'notice_elementor_pro_inactive' ) );
+		\add_action( 'admin_notices', array( $this, 'notice_elementor_pro_inactive' ) );
 	}
 
 	/**
