@@ -94,4 +94,29 @@ const generalCSS = {
 	],
 };
 
-module.exports = [adminJs, generalJs, generalCSS];
+const searchableSelectlCSS = {
+	mode: 'production',
+	entry: './src/css/searchable-select.css',
+	output: {
+		filename: 'style.bundle.js',
+		path: path.resolve(__dirname, 'assets/css/'),
+	},
+	module: {
+		rules: [
+			{
+				test: /\.css$/,
+				use: [MiniCssExtractPlugin.loader, 'css-loader'],
+			},
+		],
+	},
+	optimization: {
+		minimizer: [new CssMinimizerPlugin()],
+	},
+	plugins: [
+		new MiniCssExtractPlugin({
+			filename: 'searchable-select.min.css',
+		}),
+	],
+};
+
+module.exports = [adminJs, generalJs, generalCSS, searchableSelectlCSS];

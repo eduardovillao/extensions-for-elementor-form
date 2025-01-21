@@ -7,6 +7,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 use EEF\Includes\Actions\Register_Actions;
+use EEF\Includes\Fields\Register_Fields;
 use EEF\Includes\Custom_Success_Message;
 
 /**
@@ -76,6 +77,15 @@ final class Plugin {
 		$regiser_actions = new Register_Actions( $actions );
 		$regiser_actions->set_hooks();
 
+		$fields = array(
+			'searchable_select' => array(
+				'relative_path' => '/includes/fields/class-searchable-select.php',
+				'class_name' => 'Searchable_Select',
+			),
+		);
+		$regiser_fields = new Register_Fields( $fields );
+		$regiser_fields->set_hooks();
+
 		$custom_success_message = new Custom_Success_Message();
 		$custom_success_message->set_hooks();
 
@@ -89,14 +99,18 @@ final class Plugin {
 	public function load_required_files() : void {
 		include_once EEF_PLUGIN_PATH . '/includes/actions/class-register-actions.php';
 		include_once EEF_PLUGIN_PATH . '/includes/class-custom-success-message.php';
+		include_once EEF_PLUGIN_PATH . '/includes/fields/class-register-fields.php';
 	}
 
 	/**
 	 * Enqueue front end styles/scripts
 	 */
 	public function enqueue_frondend_scripts() : void {
-		wp_enqueue_script( 'eef-frontend-script', EEF_PLUGN_URL . 'assets/js/frontend-scripts.min.js', array( 'jquery' ), EEF_VERSION );
-		wp_enqueue_style( 'eef-frontend-style',  EEF_PLUGN_URL . 'assets/css/style.min.css', array(), EEF_VERSION );
+		\wp_enqueue_script( 'eef-frontend-script', EEF_PLUGN_URL . 'assets/js/frontend-scripts.min.js', array( 'jquery' ), EEF_VERSION );
+		\wp_enqueue_style( 'eef-frontend-style',  EEF_PLUGN_URL . 'assets/css/style.min.css', array(), EEF_VERSION );
+
+		\wp_register_style( 'eef-searchable-select-style',  EEF_PLUGN_URL . 'assets/css/searchable-select.min.css', array(), EEF_VERSION );
+		\wp_register_script( 'eef-searchable-select-script',  EEF_PLUGN_URL . 'assets/js/searchable-select.min.js', array(), EEF_VERSION );
 	}
 
 	/**
