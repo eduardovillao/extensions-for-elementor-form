@@ -1,4 +1,4 @@
-=== Extensions for Elementor Form ===
+=== Cool Formkit Lite ===
 Contributors: EVCODE
 Donate link: https://eduardovillao.me/
 Tags: elementor, elementor form, register custom post type, whatsapp
@@ -13,7 +13,7 @@ This plugin empowers your Elementor Forms with advanced functionality that simpl
 
 == Description ==
 
-Extensions for Elementor Form adds powerful new actions and controls to the Elementor Pro Form widget, enhancing its default capabilities.
+Cool Formkit Lite adds powerful new actions and controls to the Elementor Pro Form widget, enhancing its default capabilities.
 
 📢 Get started today and elevate your Elementor Form experience!
 
@@ -57,7 +57,7 @@ We’d love to hear from you! [plugins@eduardovillao.me](mailto:plugins@eduardov
 
 = This plugin requires Elementor Pro version? =
 
-Yes! As this is a extensions for Elementor Form widget it will work only widget Elementor Pro version.
+Yes! As this is a Cool Formkit Lite widget it will work only widget Elementor Pro version.
 
 = This plugin works with other widgets forms, like JetEngine and other? =
 

@@ -1,14 +1,14 @@
 <?php
-namespace EEF\feedback;
+namespace Cool_FormKit\feedback;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; }
 
 class cfef_feedback {
 
-		private $plugin_url     = EEF_PLUGIN_URL;
-		private $plugin_version = EEF_VERSION;
-		private $plugin_name    = 'Extensions for Elementor Form';
+		private $plugin_url     = CFL_PLUGIN_URL;
+		private $plugin_version = CFL_VERSION;
+		private $plugin_name    = 'Cool Formkit Lite';
 		private $plugin_slug    = 'eef';
 		// private $feedback_url   = 'http://feedback.coolplugins.net/wp-json/coolplugins-feedback/v1/feedback';
 

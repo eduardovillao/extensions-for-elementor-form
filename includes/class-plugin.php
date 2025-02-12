@@ -1,7 +1,10 @@
 <?php
 
-use EEF\Includes\Custom_Success_Message;
-use EEF\Includes\Actions\Register_Actions;
+namespace Cool_FormKit\Includes;
+
+use Cool_FormKit\Includes\Custom_Success_Message;
+use Cool_FormKit\Includes\Actions\Register_Actions;
+use Cool_Formkit\admin\CFKEF_Admin;
 
 /**
  * The file that defines the core plugin class
@@ -74,7 +77,7 @@ class CFKEF_Loader {
      */
     private function __construct() {
         $this->plugin_name = 'extensions-for-elementor-form';
-        $this->version = EEF_VERSION;
+        $this->version = CFL_VERSION;
 
         do_action( 'extensions_for_elementor_form_load' );
 		add_action( 'elementor/init', array( $this, 'init' ), 5 );
@@ -103,13 +106,13 @@ class CFKEF_Loader {
     }
 
     public function include_addons(){
-        include_once EEF_PLUGIN_PATH . '/includes/actions/class-register-actions.php';
-        if($this->is_field_enabled('custom_success_message')){
-    		include_once EEF_PLUGIN_PATH . 'includes/widget/class-custom-success-message.php';
+        include_once CFL_PLUGIN_PATH . '/includes/actions/class-register-actions.php';
+        // if($this->is_field_enabled('custom_success_message')){
+    		include_once CFL_PLUGIN_PATH . 'includes/widget/class-custom-success-message.php';
             $custom_success_message = new Custom_Success_Message();
             $custom_success_message->set_hooks();
-        }
-        if($this->is_field_enabled('register_post_after_submit')){
+        // }
+        // if($this->is_field_enabled('register_post_after_submit')){
             $actions = array(
                 'register_post' => array(
                     'relative_path' => '/includes/actions/class-register-post.php',
@@ -118,8 +121,8 @@ class CFKEF_Loader {
             );
             $regiser_actions = new Register_Actions( $actions );
             $regiser_actions->set_hooks();
-        }
-        if($this->is_field_enabled('whatsapp_redirect')){
+        // }
+        // if($this->is_field_enabled('whatsapp_redirect')){
             $actions = array(
                 'whatsapp_redirect' => array(
                     'relative_path' => '/includes/actions/class-whatsapp-redirect.php',
@@ -128,7 +131,7 @@ class CFKEF_Loader {
             );
             $regiser_actions = new Register_Actions( $actions );
             $regiser_actions->set_hooks();
-        }
+        // }
     }
     /**
      * Load the required dependencies for this plugin.
@@ -143,7 +146,7 @@ class CFKEF_Loader {
      * @access   private
      */
     private function load_dependencies() {
-        require_once EEF_PLUGIN_PATH . 'admin/class-cfkef-admin.php';
+        require_once CFL_PLUGIN_PATH . 'admin/class-cfkef-admin.php';
         $plugin_admin = CFKEF_Admin::get_instance($this->get_plugin_name(), $this->get_version());
     }
     
@@ -161,8 +164,8 @@ class CFKEF_Loader {
 	 * Enqueue front end styles/scripts
 	 */
 	public function enqueue_frondend_scripts() : void {
-		wp_enqueue_script( 'eef-frontend-script', EEF_PLUGIN_URL . 'assets/js/frontend-scripts.min.js', array( 'jquery' ), EEF_VERSION );
-		wp_enqueue_style( 'eef-frontend-style',  EEF_PLUGIN_URL . 'assets/css/style.min.css', array(), EEF_VERSION );
+		wp_enqueue_script( 'eef-frontend-script', CFL_PLUGIN_URL . 'assets/js/frontend-scripts.min.js', array( 'jquery' ), CFL_VERSION );
+		wp_enqueue_style( 'eef-frontend-style',  CFL_PLUGIN_URL . 'assets/css/style.min.css', array(), CFL_VERSION );
 	}
 
 	/**
@@ -171,7 +174,7 @@ class CFKEF_Loader {
 	 * @since 2.0
 	 */
 	function register_editor_scripts() : void {
-		wp_register_script( 'eef-editor-scripts', EEF_PLUGIN_URL . 'assets/js/editor-scripts.min.js', array(), EEF_VERSION );
+		wp_register_script( 'eef-editor-scripts', CFL_PLUGIN_URL . 'assets/js/editor-scripts.min.js', array(), CFL_VERSION );
 		wp_enqueue_script( 'eef-editor-scripts' );
 	}
     /**

@@ -1,6 +1,6 @@
 <?php
 
-namespace EEF\Includes;
+namespace Cool_FormKit\Includes;
 
 if ( ! defined( 'ABSPATH' ) ) {
 	exit;

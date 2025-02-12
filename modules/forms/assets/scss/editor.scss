@@ -1,0 +1,46 @@
+$editor-lighter: #f0f0f0;
+$editor-background-light:#f0f0f0;
+$editor-background:#f0f0f0;
+// Fields Map (Based on Repeater control)
+
+.elementor-panel {
+
+	.elementor-control-type-fields_map {
+
+		.elementor-repeater-fields {
+			margin: 10px 0;
+
+			.elementor-control {
+				padding: 0;
+			}
+
+			&:last-child {
+				margin-block-end: 0;
+			}
+		}
+	}
+	
+	.elementor-control.forms-field-shortcode{
+		.elementor-control-content{
+			flex-flow: row;
+			align-items: center;
+  			justify-content: space-between;
+		}
+	}
+}
+
+.elementor-repeater-row--form-step {
+	.elementor-repeater-row-tools {
+		&:hover {
+			background-color: $editor-lighter;
+		}
+
+		div:not(.elementor-repeater-row-handle-sortable) {
+			background-color: $editor-background-light;
+
+			&:hover {
+				background-color: $editor-background;
+			}
+		}
+	}
+}

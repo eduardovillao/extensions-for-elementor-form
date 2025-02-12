@@ -1,4 +1,6 @@
 <?php
+namespace Cool_formkit\admin;
+
 /**
  * The admin-specific functionality of the plugin.
  *
@@ -60,7 +62,7 @@ class CFKEF_Admin {
     private function __construct($plugin_name, $version) {
         $this->plugin_name = $plugin_name;
         $this->version = $version;
-        add_action('admin_menu', array($this, 'add_plugin_admin_menu'),999);
+        // add_action('admin_menu', array($this, 'add_plugin_admin_menu'),999);
         add_action('admin_init', array($this, 'register_form_elements_settings'));
         add_action('admin_enqueue_scripts', array($this, 'enqueue_admin_styles'));
     }
@@ -106,7 +108,7 @@ class CFKEF_Admin {
         <div class="cfkef-wrapper">
             <div class="cfkef-header">
                 <div class="cfkef-header-logo">
-                    <img src="<?php echo esc_url(EEF_PLUGIN_URL . 'assets/images/cool-formkit-logo.png'); ?>" alt="Cool FormKit Logo">
+                    <img src="<?php echo esc_url(CFL_PLUGIN_URL . 'assets/images/cool-formkit-logo.png'); ?>" alt="Cool FormKit Logo">
                 </div>
                 <div class="cfkef-header-buttons">
                     <p>Upgrade your Elementor form with advanced fields and features.</p>
@@ -177,9 +179,9 @@ class CFKEF_Admin {
     public function enqueue_admin_styles() {
 
         if (isset($_GET['page']) && strpos($_GET['page'], 'cool-formkit') !== false) {
-            wp_enqueue_style('cfkef-admin-style', EEF_PLUGIN_URL . 'assets/css/admin-style.css', array(), $this->version, 'all');
+            wp_enqueue_style('cfkef-admin-style', CFL_PLUGIN_URL . 'assets/css/admin-style.css', array(), $this->version, 'all');
             wp_enqueue_style('dashicons');
-            wp_enqueue_script('cfkef-admin-script', EEF_PLUGIN_URL . 'assets/js/admin-script.js', array('jquery'), $this->version, true);
+            wp_enqueue_script('cfkef-admin-script', CFL_PLUGIN_URL . 'assets/js/admin-script.js', array('jquery'), $this->version, true);
         }
     }
 
