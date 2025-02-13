@@ -32,6 +32,17 @@ class Redirect extends Action_Base {
 		);
 
 		$widget->add_control(
+			'should_redirect',
+			[
+				'label' => esc_html__( 'Redirect To Thank You Page', 'hello-plus' ),
+				'type' => Controls_Manager::SWITCHER,
+				'label_on' => esc_html__( 'Yes', 'hello-plus' ),
+				'label_off' => esc_html__( 'No', 'hello-plus' ),
+				'return_value' => 'true',
+				'default' => '',
+			]
+		);
+		$widget->add_control(
 			'redirect_to',
 			[
 				'label' => esc_html__( 'Redirect To', 'cool-formkit' ),
@@ -51,6 +62,9 @@ class Redirect extends Action_Base {
 				'label_block' => true,
 				'render_type' => 'none',
 				'classes' => 'elementor-control-direction-ltr',
+				'condition' => [
+					'should_redirect' => 'true',
+				],
 			]
 		);
 

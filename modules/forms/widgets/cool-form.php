@@ -70,75 +70,16 @@ class Cool_Form extends Form_Base {
 	}
 
 	protected function register_controls() {
-		// $this->add_content_text_section();
 		$this->add_content_form_fields_section();
 		$this->add_content_button_section();
 		$this->add_content_actions_after_submit_section();
 		$this->add_content_additional_options_section();
 
-		// $this->add_style_text_section();
 		$this->add_style_form_section();
 		$this->add_style_fields_section();
 		$this->add_style_buttons_section();
 		$this->add_style_messages_section();
 		$this->add_style_box_section();
-	}
-
-	protected function add_content_text_section(): void {
-		$this->start_controls_section(
-			'section_text',
-			[
-				'label' => esc_html__( 'Text', 'cool-formkit' ),
-			]
-		);
-
-		$this->add_control(
-			'text_heading',
-			[
-				'label' => esc_html__( 'Heading', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Contact Us', 'cool-formkit' ),
-				'placeholder' => esc_html__( 'Add your text here', 'cool-formkit' ),
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		$this->add_control(
-			'text_heading_tag',
-			[
-				'label' => esc_html__( 'Heading HTML Tag', 'cool-formkit' ),
-				'type' => Controls_Manager::SELECT,
-				'options' => [
-					'h1' => 'H1',
-					'h2' => 'H2',
-					'h3' => 'H3',
-					'h4' => 'H4',
-					'h5' => 'H5',
-					'h6' => 'H6',
-					'div' => 'div',
-					'span' => 'span',
-					'p' => 'p',
-				],
-				'default' => 'h2',
-			]
-		);
-
-		$this->add_control(
-			'text_description',
-			[
-				'label' => esc_html__( 'Description', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'default' => esc_html__( 'Fill out the form below and we will contact you as soon as possible', 'cool-formkit' ),
-				'placeholder' => esc_html__( 'Add your text here', 'cool-formkit' ),
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		$this->end_controls_section();
 	}
 
 	protected function add_content_form_fields_section(): void {
@@ -566,238 +507,49 @@ class Cool_Form extends Form_Base {
 			]
 		);
 
-		$this->add_control(
-			'should_redirect',
-			[
-				'label' => esc_html__( 'Redirect To Thank You Page', 'cool-formkit' ),
-				'type' => Controls_Manager::SWITCHER,
-				'label_on' => esc_html__( 'Yes', 'cool-formkit' ),
-				'label_off' => esc_html__( 'No', 'cool-formkit' ),
-				'return_value' => 'true',
-				'default' => '',
-			]
-		);
+		$actions = Module::instance()->actions_registrar->get();
+
+		$actions_options = [];
+
+		foreach ( $actions as $action ) {
+			$actions_options[ $action->get_name() ] = $action->get_label();
+		}
+
+		$default_submit_actions = [ 'email' ];
+
+		/**
+		 * Default submit actions.
+		 *
+		 * Filters the list of submit actions pre deffined by Elementor forms.
+		 *
+		 * By default, only one submit action is set by Elementor forms, an 'email'
+		 * action. This hook allows developers to alter those submit action.
+		 *
+		 * @param array $default_submit_actions A list of default submit actions.
+		 */
+		$default_submit_actions = apply_filters( 'elementor_pro/forms/default_submit_actions', $default_submit_actions );
 
 		$this->add_control(
-			'redirect_to',
+			'submit_actions',
 			[
-				'label' => esc_html__( 'Redirect To', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXT,
-				'placeholder' => esc_html__( 'https://your-link.com', 'cool-formkit' ),
-				'ai' => [
-					'active' => false,
-				],
-				'dynamic' => [
-					'active' => true,
-					'categories' => [
-						TagsModule::POST_META_CATEGORY,
-						TagsModule::TEXT_CATEGORY,
-						TagsModule::URL_CATEGORY,
-					],
-				],
-				'label_block' => true,
-				'render_type' => 'none',
-				'classes' => 'elementor-control-direction-ltr',
-				'condition' => [
-					'should_redirect' => 'true',
-				],
-			]
-		);
-
-		$this->add_control(
-			'email_heading',
-			[
-				'label' => esc_html__( 'Email Submissions', 'cool-formkit' ),
-				'type' => Controls_Manager::HEADING,
-				'separator' => 'before',
-			]
-		);
-
-		$this->add_control(
-			'email_to',
-			[
-				'label' => esc_html__( 'To', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => get_option( 'admin_email' ),
-				'ai' => [
-					'active' => false,
-				],
-				'placeholder' => get_option( 'admin_email' ),
-				'label_block' => true,
-				'title' => esc_html__( 'Separate emails with commas', 'cool-formkit' ),
-				'render_type' => 'none',
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		/* translators: %s: Site title. */
-		$default_message = sprintf( esc_html__( 'New message from [%s]', 'cool-formkit' ), get_bloginfo( 'name' ) );
-
-		$this->add_control(
-			'email_subject',
-			[
-				'label' => esc_html__( 'Subject', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => $default_message,
-				'ai' => [
-					'active' => false,
-				],
-				'placeholder' => $default_message,
-				'label_block' => true,
-				'render_type' => 'none',
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		$this->add_control(
-			'email_content',
-			[
-				'label' => esc_html__( 'Message', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXTAREA,
-				'default' => '[all-fields]',
-				'ai' => [
-					'active' => false,
-				],
-				'placeholder' => '[all-fields]',
-				'description' => sprintf(
-				/* translators: %s: The [all-fields] shortcode. */
-					esc_html__( 'By default, all form fields are sent via %s shortcode. To customize sent fields, copy the shortcode that appears inside each field and paste it above.', 'cool-formkit' ),
-					'<code>[all-fields]</code>'
-				),
-				'render_type' => 'none',
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		$site_domain = Module::get_site_domain();
-
-		$this->add_control(
-			'email_from',
-			[
-				'label' => esc_html__( 'From Email', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => 'email@' . $site_domain,
-				'ai' => [
-					'active' => false,
-				],
-				'render_type' => 'none',
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		$this->add_control(
-			'email_from_name',
-			[
-				'label' => esc_html__( 'From Name', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => get_bloginfo( 'name' ),
-				'ai' => [
-					'active' => false,
-				],
-				'render_type' => 'none',
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		$this->add_control(
-			'email_reply_to',
-			[
-				'label' => esc_html__( 'Reply-To', 'cool-formkit' ),
-				'type' => Controls_Manager::SELECT,
-				'options' => [
-					'' => '',
-				],
-				'render_type' => 'none',
-			]
-		);
-
-		$this->add_control(
-			'email_to_cc',
-			[
-				'label' => esc_html__( 'Cc', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => '',
-				'ai' => [
-					'active' => false,
-				],
-				'title' => esc_html__( 'Separate emails with commas', 'cool-formkit' ),
-				'render_type' => 'none',
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		$this->add_control(
-			'email_to_bcc',
-			[
-				'label' => esc_html__( 'Bcc', 'cool-formkit' ),
-				'type' => Controls_Manager::TEXT,
-				'default' => '',
-				'ai' => [
-					'active' => false,
-				],
-				'title' => esc_html__( 'Separate emails with commas', 'cool-formkit' ),
-				'render_type' => 'none',
-				'dynamic' => [
-					'active' => true,
-				],
-			]
-		);
-
-		$this->add_control(
-			'form_metadata',
-			[
-				'label' => esc_html__( 'Meta Data', 'cool-formkit' ),
+				'label' => esc_html__( 'Add Action', 'elementor-pro' ),
 				'type' => Controls_Manager::SELECT2,
 				'multiple' => true,
-				'label_block' => true,
-				'separator' => 'before',
-				'default' => [
-					'date',
-					'time',
-					'page_url',
-					'user_agent',
-					'remote_ip',
-					'credit',
-				],
-				'options' => [
-					'date' => esc_html__( 'Date', 'cool-formkit' ),
-					'time' => esc_html__( 'Time', 'cool-formkit' ),
-					'page_url' => esc_html__( 'Page URL', 'cool-formkit' ),
-					'user_agent' => esc_html__( 'User Agent', 'cool-formkit' ),
-					'remote_ip' => esc_html__( 'Remote IP', 'cool-formkit' ),
-					'credit' => esc_html__( 'Credit', 'cool-formkit' ),
-				],
+				'options' => $actions_options,
 				'render_type' => 'none',
+				'label_block' => true,
+				'default' => $default_submit_actions,
+				'description' => esc_html__( 'Add actions that will be performed after a visitor submits the form (e.g. send an email notification). Choosing an action will add its setting below.', 'elementor-pro' ),
 			]
 		);
 
-		$this->add_control(
-			'email_content_type',
-			[
-				'label' => esc_html__( 'Send As', 'cool-formkit' ),
-				'type' => Controls_Manager::SELECT,
-				'default' => 'html',
-				'render_type' => 'none',
-				'options' => [
-					'html' => esc_html__( 'HTML', 'cool-formkit' ),
-					'plain' => esc_html__( 'Plain', 'cool-formkit' ),
-				],
-			]
-		);
 
 		$this->end_controls_section();
+
+		foreach ( $actions as $action ) {
+			$action->register_settings_section( $this );
+		}
+
 	}
 
 	protected function add_content_additional_options_section(): void {
@@ -919,110 +671,6 @@ class Cool_Form extends Form_Base {
 		$this->end_controls_section();
 	}
 
-	protected function add_style_text_section(): void {
-		$this->start_controls_section(
-			'section_text_style',
-			[
-				'label' => esc_html__( 'Text', 'cool-formkit' ),
-				'tab' => Controls_Manager::TAB_STYLE,
-			]
-		);
-
-		$this->add_control(
-			'text_align',
-			[
-				'label' => esc_html__( 'Align', 'cool-formkit' ),
-				'type' => Controls_Manager::CHOOSE,
-				'options' => [
-					'flex-start' => [
-						'title' => esc_html__( 'Left', 'cool-formkit' ),
-						'icon' => 'eicon-text-align-left',
-					],
-					'center' => [
-						'title' => esc_html__( 'Center', 'cool-formkit' ),
-						'icon' => 'eicon-text-align-center',
-					],
-					'flex-end' => [
-						'title' => esc_html__( 'Right', 'cool-formkit' ),
-						'icon' => 'eicon-text-align-right',
-					],
-				],
-				'default' => 'center',
-				'selectors' => [
-					'{{WRAPPER}} .cool-form' => '--cool-form-text-container-align: {{VALUE}};',
-				],
-			]
-		);
-
-		$this->add_control(
-			'heading_text',
-			[
-				'label' => esc_html__( 'Heading', 'cool-formkit' ),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-
-		$this->add_control(
-			'heading_color',
-			[
-				'label' => esc_html__( 'Text Color', 'cool-formkit' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cool-form' => '--cool-form-heading-color: {{VALUE}};',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_PRIMARY,
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'heading_typography',
-				'selector' => '{{WRAPPER}} .cool-form__heading',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_PRIMARY,
-				],
-			]
-		);
-
-		$this->add_control(
-			'heading_description',
-			[
-				'label' => esc_html__( 'Description', 'cool-formkit' ),
-				'type' => Controls_Manager::HEADING,
-			]
-		);
-
-		$this->add_control(
-			'description_color',
-			[
-				'label' => esc_html__( 'Text Color', 'cool-formkit' ),
-				'type' => Controls_Manager::COLOR,
-				'selectors' => [
-					'{{WRAPPER}} .cool-form' => '--cool-form-description-color: {{VALUE}};',
-				],
-				'global' => [
-					'default' => Global_Colors::COLOR_TEXT,
-				],
-			]
-		);
-
-		$this->add_group_control(
-			Group_Control_Typography::get_type(),
-			[
-				'name' => 'description_typography',
-				'selector' => '{{WRAPPER}} .cool-form__description',
-				'global' => [
-					'default' => Global_Typography::TYPOGRAPHY_TEXT,
-				],
-			]
-		);
-
-		$this->end_controls_section();
-	}
-
 	protected function add_style_form_section(): void {
 		$this->start_controls_section(
 			'section_form_style',
@@ -1066,7 +714,7 @@ class Cool_Form extends Form_Base {
 				'type' => Controls_Manager::SLIDER,
 				'size_units' => [ 'px', 'em', 'rem', 'custom' ],
 				'default' => [
-					'size' => 32,
+					'size' => 10,
 					'unit' => 'px',
 				],
 				'range' => [
@@ -1261,7 +909,7 @@ class Cool_Form extends Form_Base {
 					],
 				],
 				'default' => [
-					'size' => 2,
+					'size' => 1,
 					'unit' => 'px',
 				],
 				'selectors' => [
@@ -1282,7 +930,8 @@ class Cool_Form extends Form_Base {
 					'{{WRAPPER}} .cool-form' => '--cool-form-field-border-color: {{VALUE}};',
 				],
 				'global' => [
-					'default' => Global_Colors::COLOR_SECONDARY,
+					// 'default' => Global_Colors::COLOR_SECONDARY,
+					'default' => '#69727d',
 				],
 				'separator' => 'before',
 				'condition' => [
@@ -1753,16 +1402,16 @@ class Cool_Form extends Form_Base {
 					],
 				],
 				'default' => [
-					'size' => 640,
-					'unit' => 'px',
+					'size' => 100,
+					'unit' => '%',
 				],
 				'tablet_default' => [
-					'size' => 640,
-					'unit' => 'px',
+					'size' => 100,
+					'unit' => '%',
 				],
 				'mobile_default' => [
-					'size' => 320,
-					'unit' => 'px',
+					'size' => 100,
+					'unit' => '%',
 				],
 				'selectors' => [
 					'{{WRAPPER}} .cool-form' => '--cool-form-content-width: {{SIZE}}{{UNIT}};',
@@ -1781,10 +1430,10 @@ class Cool_Form extends Form_Base {
 					'{{WRAPPER}} .cool-form' => '--cool-form-box-padding-block-end: {{BOTTOM}}{{UNIT}}; --cool-form-box-padding-block-start: {{TOP}}{{UNIT}}; --cool-form-box-padding-inline-end: {{RIGHT}}{{UNIT}}; --cool-form-box-padding-inline-start: {{LEFT}}{{UNIT}};',
 				],
 				'default' => [
-					'top' => '60',
-					'right' => '60',
-					'bottom' => '60',
-					'left' => '60',
+					'top' => '0',
+					'right' => '0',
+					'bottom' => '0',
+					'left' => '0',
 					'unit' => 'px',
 				],
 				'separator' => 'before',

@@ -33,7 +33,7 @@ class Widget_Form_Render {
 
 		?>
 		<form class="cool-form" method="post" <?php $this->widget->print_render_attribute_string( 'form' ); ?>>
-			<?php //$this->render_text_container(); ?>
+			
 			<input type="hidden" name="post_id" value="<?php echo (int) Utils::get_current_post_id(); ?>"/>
 			<input type="hidden" name="form_id" value="<?php echo esc_attr( $this->widget->get_id() ); ?>"/>
 			<input type="hidden" name="referer_title" value="<?php echo esc_attr( $referer_title ); ?>"/>
@@ -253,29 +253,7 @@ class Widget_Form_Render {
 		</div>
 		<?php
 	}
-
-	protected function render_text_container(): void {
-		$heading_text = $this->settings['text_heading'];
-		$has_heading = ! empty( $this->settings['text_heading'] );
-		$heading_tag = $this->settings['text_heading_tag'];
-
-		$description_text = $this->settings['text_description'];
-		$has_description = ! empty( $description_text );
-		?>
-		<div class="cool-form__text-container">
-			<?php if ( $has_heading ) {
-				$heading_output = sprintf( '<%1$s %2$s>%3$s</%1$s>', Elementor_Utils::validate_html_tag( $heading_tag ), 'class="cool-form__heading"', esc_html( $heading_text ) );
-				// Escaped above
-				Elementor_Utils::print_unescaped_internal_string( $heading_output );
-			} ?>
-
-			<?php if ( $has_description ) { ?>
-				<p class="cool-form__description"><?php echo esc_html( $description_text ); ?></p>
-			<?php } ?>
-		</div>
-		<?php
-	}
-
+	
 	public function __construct( Cool_Form $widget ) {
 		$this->widget = $widget;
 		$this->settings = $widget->get_settings_for_display();

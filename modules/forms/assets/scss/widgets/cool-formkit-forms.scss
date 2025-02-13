@@ -19,8 +19,8 @@
 
 .cool-form {
 	--cool-column-width: 100%;
-	--cool-form-row-gap: 32px;
-	--cool-form-column-gap: 32px;
+	--cool-form-row-gap: 10px;
+	--cool-form-column-gap: 10px;
 	--cool-form-button-icon-spacing: 8px;
 	--cool-form-button-icon-position: row;
 	--cool-form-text-container-align: center;
@@ -31,25 +31,25 @@
 	--cool-form-mark-color: #FF0000;
 	--cool-form-field-text-color: #000;
 	--cool-form-field-bg-color: #FFF;
-	--cool-form-field-border-color: #000;
-	--cool-form-field-border-width: 2px;
+	--cool-form-field-border-color: #69727d;
+	--cool-form-field-border-width: 1px;
 	--cool-form-button-align: stretch;
 	--cool-form-button-icon-size: 16px;
 	--cool-form-button-icon-spacing: 10px;
 	--cool-form-button-text-color: #ffffff;
 	--cool-form-button-text-color-hover: #ffffff;
 	--cool-form-button-border-width: 1px;
-	--cool-form-button-border-color: #28292B;
+	--cool-form-button-border-color: #69727d;
 	--cool-form-button-border-radius: 0;
 	--cool-form-button-padding-block-end: 8px;
 	--cool-form-button-padding-block-start: 8px;
 	--cool-form-button-padding-inline-end: 16px;
 	--cool-form-button-padding-inline-start: 16px;
-	--cool-form-content-width: 640px;
-	--cool-form-box-padding-block-end: 60px;
-	--cool-form-box-padding-block-start: 60px;
-	--cool-form-box-padding-inline-end: 60px;
-	--cool-form-box-padding-inline-start: 60px;
+	--cool-form-content-width: 100%;
+	--cool-form-box-padding-block-end: 0px;
+	--cool-form-box-padding-block-start: 0px;
+	--cool-form-box-padding-inline-end: 0px;
+	--cool-form-box-padding-inline-start: 0px;
 
 	display: flex;
 	flex-direction: column;
@@ -199,7 +199,7 @@
 		}
 
 		&.has-border {
-			border-color: var(--cool-form-button-border-color);
+			border-color: var();
 			border-style: solid;
 			border-width: var(--cool-form-button-border-width);
 			border-radius: var(--cool-form-button-border-radius);
