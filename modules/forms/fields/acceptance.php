@@ -65,7 +65,7 @@ class Acceptance extends Field_Base {
 		$form->add_render_attribute( 'input' . $item_index, 'type', 'checkbox', true );
 
 		if ( ! empty( $item['acceptance_text'] ) ) {
-			$label = '<label for="' . $form->get_attribute_id( $item ) . '">' . $item['acceptance_text'] . '</label>';
+			$label = '<label for="' . $form->get_attribute_id( $item ) . '" class="cool-form__field-label">' . $item['acceptance_text'] . '</label>';
 		}
 
 		if ( ! empty( $item['checked_by_default'] ) ) {

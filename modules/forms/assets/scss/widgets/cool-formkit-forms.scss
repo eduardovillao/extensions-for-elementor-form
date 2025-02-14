@@ -1,6 +1,10 @@
 @import "../../../../../assets/dev/scss/variables";
 
 @mixin column-width-sizes() {
+	&-25 {
+		--cool-column-width: 25.2%;
+		max-width: calc(var(--cool-column-width) - calc(var(--cool-form-column-gap) / 2));
+	}
 	&-33 {
 		--cool-column-width: 32.2%;
 		max-width: calc(var(--cool-column-width) - calc(var(--cool-form-column-gap) / 2));

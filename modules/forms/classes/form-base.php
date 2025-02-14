@@ -81,6 +81,7 @@ abstract class Form_Base extends Widget_Base {
 					'id' => $this->get_attribute_id( $item ),
 					'class' => [
 						'elementor-field-textual',
+						'cool-form__field',
 						'elementor-size-' . $item['input_size'],
 					],
 				],

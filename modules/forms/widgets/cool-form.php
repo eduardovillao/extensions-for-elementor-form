@@ -147,7 +147,7 @@ class Cool_Form extends Form_Base {
 										size = ' size="' + item.select_size + '"';
 									}
 									inputField = '<div class="elementor-field elementor-select-wrapper ' + itemClasses + '">';
-									inputField += '<select class="elementor-field-textual elementor-size-' + settings.input_size + '" name="form_field_' + i + '" id="form_field_' + i + '" ' + required + multiple + size + ' >';
+									inputField += '<select class="cool-form__field elementor-field-textual elementor-size-' + settings.input_size + '" name="form_field_' + i + '" id="form_field_' + i + '" ' + required + multiple + size + ' >';
 									for ( var x in options ) {
 										var option_value = options[ x ];
 										var option_label = options[ x ];
@@ -216,13 +216,12 @@ class Cool_Form extends Form_Base {
 							case 'password':
 							case 'number':
 							case 'search':
-							case 'tel':
 								itemClasses = 'elementor-field-textual ' + itemClasses;
 								inputField = '<input size="1" type="' + item.field_type + '" value="' + item.field_value + '" class="cool-form__field elementor-size-' + settings.input_size + ' ' + itemClasses + '" name="form_field_' + i + '" id="form_field_' + i + '" ' + required + ' ' + placeholder + ' >';
 								break;
 							default:
 								item.placeholder = _.escape( item.placeholder );
-								inputField = elementor.hooks.applyFilters( 'elementor_pro/forms/content_template/field/' + item.field_type, '', item, i, settings );
+								inputField = elementor.hooks.applyFilters( 'cool_formkit/forms/content_template/field/' + item.field_type, '', item, i, settings );
 						}
 
 						if ( inputField ) {
@@ -471,6 +470,7 @@ class Cool_Form extends Form_Base {
 					'100' => '100%',
 					'50' => '50%',
 					'33' => '33%',
+					'25' => '25%',
 				],
 				'default' => '100',
 				'tablet_default' => '100',

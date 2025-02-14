@@ -11,7 +11,7 @@ module.exports = elementorModules.editor.utils.Module.extend( {
 		}
 
 		if ( item.acceptance_text ) {
-			label = '<label for="form_field_' + i + '">' + item.acceptance_text + '</label>';
+			label = '<label for="form_field_' + i + '" class="cool-form__field-label">' + item.acceptance_text + '</label>';
 		}
 
 		if ( item.checked_by_default ) {

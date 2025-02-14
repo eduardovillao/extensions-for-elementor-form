@@ -25,6 +25,10 @@ class Widget_Form_Render {
 			'class' => 'cool-form__wrapper',
 		] );
 
+		$this->widget->add_render_attribute( 'label', [
+			'class' => 'cool-form__field-label',
+		] );
+		
 		$referer_title = trim( wp_title( '', false ) );
 
 		if ( ! $referer_title && is_home() ) {
