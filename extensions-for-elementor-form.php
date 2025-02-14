@@ -128,7 +128,7 @@ class Cool_Formkit_Lite_For_Elementor_Form {
 			return false;
 		}
 
-		if ( ! is_plugin_active( 'elementor-pro/elementor-pro.php' ) ) {
+		if ( ! is_plugin_active( 'elementor/elementor.php' ) ) {
 			add_action('admin_notices', array($this, 'admin_notice_missing_main_plugin'));
 			return false;
 		}
@@ -153,7 +153,7 @@ class Cool_Formkit_Lite_For_Elementor_Form {
 				'extensions-for-elementor-form'
 			),
 			esc_html__( 'Cool Formkit Lite', 'extensions-for-elementor-form' ),
-			esc_html__( 'Elementor Pro', 'extensions-for-elementor-form' ),
+			esc_html__( 'Elementor', 'extensions-for-elementor-form' ),
 			); 
 			printf( '<div class="notice notice-warning is-dismissible"><p>%1$s</p></div>', esc_html( $message ) );
 			deactivate_plugins( plugin_basename( __FILE__ ) );

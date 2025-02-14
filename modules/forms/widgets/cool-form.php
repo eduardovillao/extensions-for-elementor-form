@@ -89,9 +89,10 @@ class Cool_Form extends Form_Base {
 			'text' => esc_html__( 'Text', 'cool-formkit' ),
 			'email' => esc_html__( 'Email', 'cool-formkit' ),
 			'textarea' => esc_html__( 'Textarea', 'cool-formkit' ),
-			'cool-tel' => esc_html__( 'Tel', 'cool-formkit' ),
+			'cool_tel' => esc_html__( 'Tel', 'cool-formkit' ),
 			'select' => esc_html__( 'Select', 'cool-formkit' ),
 			'cool-acceptance' => esc_html__( 'Acceptance', 'cool-formkit' ),
+			'cool_number' => esc_html__( 'Number', 'cool-formkit' ),
 		];
 
 		$repeater->start_controls_tabs( 'form_fields_tabs' );
@@ -134,10 +135,11 @@ class Cool_Form extends Form_Base {
 							'name' => 'field_type',
 							'operator' => 'in',
 							'value' => [
-								'cool-tel',
+								'cool_tel',
 								'text',
 								'email',
 								'textarea',
+								'cool_number',
 							],
 						],
 					],
@@ -294,7 +296,8 @@ class Cool_Form extends Form_Base {
 								'text',
 								'email',
 								'textarea',
-								'tel',
+								'cool_tel',
+								'cool_number',
 								'select',
 							],
 						],
@@ -515,7 +518,7 @@ class Cool_Form extends Form_Base {
 			$actions_options[ $action->get_name() ] = $action->get_label();
 		}
 
-		$default_submit_actions = [ 'email' ];
+		$default_submit_actions = [ 'cool_email' ];
 
 		/**
 		 * Default submit actions.
@@ -527,7 +530,7 @@ class Cool_Form extends Form_Base {
 		 *
 		 * @param array $default_submit_actions A list of default submit actions.
 		 */
-		$default_submit_actions = apply_filters( 'elementor_pro/forms/default_submit_actions', $default_submit_actions );
+		$default_submit_actions = apply_filters( 'cool_formkit/forms/default_submit_actions', $default_submit_actions );
 
 		$this->add_control(
 			'submit_actions',

@@ -1,0 +1,107 @@
+<?php
+namespace Cool_FormKit\Modules\Forms\Fields;
+
+use Elementor\Widget_Base;
+use Cool_FormKit\Modules\Forms\Classes;
+use Elementor\Controls_Manager;
+use Cool_FormKit\Modules\Forms\Components\Ajax_Handler;
+
+
+if ( ! defined( 'ABSPATH' ) ) {
+	exit; // Exit if accessed directly
+}
+
+class Number extends Field_Base {
+
+	public function get_type() {
+		return 'cool_number';
+	}
+
+	public function get_name() {
+		return esc_html__( 'Number', 'elementor-pro' );
+	}
+
+	public function render( $item, $item_index, $form ) {
+
+
+		$form->add_render_attribute( 'input' . $item_index, 'class', 'elementor-field-textual' );
+
+		if ( isset( $item['field_min'] ) ) {
+			$form->add_render_attribute( 'input' . $item_index, 'min', esc_attr( $item['field_min'] ) );
+		}
+		if ( isset( $item['field_max'] ) ) {
+			$form->add_render_attribute( 'input' . $item_index, 'max', esc_attr( $item['field_max'] ) );
+		}
+
+		?>
+			<input <?php $form->print_render_attribute_string( 'input' . $item_index ); ?> >
+		<?php
+	}
+
+	public static function elementor() {
+		return \Elementor\Plugin::$instance;
+	}
+	/**
+	 * @param Widget_Base $widget
+	 */
+	public function update_controls( $widget ) {
+		// $elementor = \Elementor\Plugin::$instance;
+		$elementor = Number::elementor();
+
+		$control_data = $elementor->controls_manager->get_control_from_stack( $widget->get_unique_name(), 'form_fields' );
+		// $control_data = $elementor->controls_manager->get_control_from_stack( 'cool-form', 'cool_form_fields' );
+
+
+		if ( is_wp_error( $control_data ) ) {
+			return;
+		}
+
+
+		$field_controls = [
+			'num_field_min' => [
+				'name' => 'num_field_min',
+				'label' => esc_html__( 'Min. Value', 'elementor-pro' ),
+				'type' => Controls_Manager::NUMBER,
+				'condition' => [
+					'field_type' => $this->get_type(),
+				],
+				'tab' => 'content',
+				'inner_tab' => 'form_fields_content_tab',
+				'tabs_wrapper' => 'form_fields_tabs',
+			],
+			'num_field_max' => [
+				'name' => 'num_field_max',
+				'label' => esc_html__( 'Max. Value', 'elementor-pro' ),
+				'type' => Controls_Manager::NUMBER,
+				'condition' => [
+					'field_type' => $this->get_type(),
+				],
+				'tab' => 'content',
+				'inner_tab' => 'form_fields_content_tab',
+				'tabs_wrapper' => 'form_fields_tabs',
+			],
+		];
+
+		$control_data['fields'] = $this->inject_field_controls( $control_data['fields'], $field_controls );
+
+		$widget->update_control( 'form_fields', $control_data );
+
+	}
+
+	public function validation( $field, Classes\Form_Record $record, Ajax_Handler $ajax_handler) {
+
+		if ( ! empty( $field['field_max'] ) && $field['field_max'] < (int) $field['value'] ) {
+			/* translators: %s: The value of max field. */
+			$ajax_handler->add_error( $field['id'], sprintf( esc_html__( 'The field value must be less than or equal to %s.', 'elementor-pro' ), $field['field_max'] ) );
+		}
+
+		if ( ! empty( $field['field_min'] ) && $field['field_min'] > (int) $field['value'] ) {
+			/* translators: %s: The value of min field. */
+			$ajax_handler->add_error( $field['id'], sprintf( esc_html__( 'The field value must be greater than or equal to %s.', 'elementor-pro' ), $field['field_min'] ) );
+		}
+	}
+
+	public function sanitize_field( $value, $field ) {
+		return intval( $value );
+	}
+}

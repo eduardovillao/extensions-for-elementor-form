@@ -32,5 +32,6 @@ class Form_Fields_Registrar extends Registrar {
 	public function init() {
 		$this->register( new Fields\Tel() );
 		$this->register( new Fields\Acceptance() );
+		$this->register( new Fields\Number() );
 	}
 }

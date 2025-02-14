@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Email extends Action_Base {
 
 	public function get_name(): string {
-		return 'ehp-email';
+		return 'cool_email';
 	}
 
 	public function get_label(): string {

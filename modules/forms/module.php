@@ -27,7 +27,7 @@ class Module extends Module_Base {
 
 
 	public static function get_name(): string {
-		return 'forms';
+		return 'cool-forms';
 	}
 
 	protected function get_widget_ids(): array {

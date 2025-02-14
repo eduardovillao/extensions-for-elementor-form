@@ -79,6 +79,10 @@ class CFKEF_Loader {
         $this->plugin_name = 'extensions-for-elementor-form';
         $this->version = CFL_VERSION;
 
+        if ( ! is_plugin_active( 'elementor-pro/elementor-pro.php' ) ) {
+            return false;
+		}
+
         do_action( 'extensions_for_elementor_form_load' );
 		add_action( 'elementor/init', array( $this, 'init' ), 5 );
 
@@ -174,7 +178,7 @@ class CFKEF_Loader {
 	 * @since 2.0
 	 */
 	function register_editor_scripts() : void {
-		wp_register_script( 'eef-editor-scripts', CFL_PLUGIN_URL . 'assets/js/editor-scripts.min.js', array(), CFL_VERSION );
+		wp_register_script( 'eef-editor-scripts', CFL_PLUGIN_URL . 'assets/js/admin/editor-scripts.min.js', array(), CFL_VERSION );
 		wp_enqueue_script( 'eef-editor-scripts' );
 	}
     /**

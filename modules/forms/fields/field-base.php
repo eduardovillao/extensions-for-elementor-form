@@ -68,7 +68,7 @@ abstract class Field_Base {
 		$this->render( $item, $item_index, $form );
 	}
 
-	public function sanitize_field( $value ) {
+	public function sanitize_field( $value, $field ) {
 		return sanitize_text_field( $value );
 	}
 
@@ -91,7 +91,7 @@ abstract class Field_Base {
 		add_filter( "cool_formkit/forms/sanitize/{$field_type}", [ $this, 'sanitize_field' ], 10, 2 );
 		add_action( 'elementor/preview/enqueue_scripts', [ $this, 'add_preview_depends' ] );
 		if ( method_exists( $this, 'update_controls' ) ) {
-			add_action( 'elementor/element/form/section_form_fields/before_section_end', [ $this, 'update_controls' ] );
+			add_action( 'elementor/element/cool-form/section_form_fields/before_section_end', [ $this, 'update_controls' ] );
 		}
 	}
 }
