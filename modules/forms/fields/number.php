@@ -14,7 +14,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Number extends Field_Base {
 
 	public function get_type() {
-		return 'cool_number';
+		return 'number';
 	}
 
 	public function get_name() {
@@ -89,16 +89,36 @@ class Number extends Field_Base {
 	}
 
 	public function validation( $field, Classes\Form_Record $record, Ajax_Handler $ajax_handler) {
+		
+		$search_id = $field['id'];
 
-		if ( ! empty( $field['field_max'] ) && $field['field_max'] < (int) $field['value'] ) {
-			/* translators: %s: The value of max field. */
-			$ajax_handler->add_error( $field['id'], sprintf( esc_html__( 'The field value must be less than or equal to %s.', 'elementor-pro' ), $field['field_max'] ) );
+		$form_fields = $record->form_settings['form_fields']; 
+
+		foreach ($form_fields as $field_data) {
+			if (isset($field_data['custom_id']) && $field_data['custom_id'] === $search_id) {
+
+				if ( ! empty( $field_data['num_field_max'] ) && $field_data['num_field_max'] < (int) $field['value'] ) {
+					/* translators: %s: The value of max field. */
+					$ajax_handler->add_error( $field['id'], sprintf( esc_html__( 'The field value must be less than or equal to %s.', 'elementor-pro' ), $field_data['num_field_max'] ) );
+				}
+		
+				if ( ! empty( $field_data['num_field_min'] ) && $field_data['num_field_min'] > (int) $field['value'] ) {
+					/* translators: %s: The value of min field. */
+					$ajax_handler->add_error( $field['id'], sprintf( esc_html__( 'The field value must be greater than or equal to %s.', 'elementor-pro' ), $field_data['num_field_min'] ) );
+				}
+			}
 		}
 
-		if ( ! empty( $field['field_min'] ) && $field['field_min'] > (int) $field['value'] ) {
-			/* translators: %s: The value of min field. */
-			$ajax_handler->add_error( $field['id'], sprintf( esc_html__( 'The field value must be greater than or equal to %s.', 'elementor-pro' ), $field['field_min'] ) );
-		}
+
+		// if ( ! empty( $field['num_field_max'] ) && $field['num_field_max'] < (int) $field['value'] ) {
+		// 	/* translators: %s: The value of max field. */
+		// 	$ajax_handler->add_error( $field['id'], sprintf( esc_html__( 'The field value must be less than or equal to %s.', 'elementor-pro' ), $field['num_field_max'] ) );
+		// }
+
+		// if ( ! empty( $field['num_field_min'] ) && $field['num_field_min'] > (int) $field['value'] ) {
+		// 	/* translators: %s: The value of min field. */
+		// 	$ajax_handler->add_error( $field['id'], sprintf( esc_html__( 'The field value must be greater than or equal to %s.', 'elementor-pro' ), $field['num_field_min'] ) );
+		// }
 	}
 
 	public function sanitize_field( $value, $field ) {

@@ -12,7 +12,7 @@ class Form_Record {
 	protected $sent_data;
 	protected $fields;
 	protected $form_type;
-	protected $form_settings;
+	public $form_settings;
 	protected $files = [];
 	protected $meta = [];
 

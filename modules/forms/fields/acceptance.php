@@ -12,10 +12,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Acceptance extends Field_Base {
 
 	public function get_type() {
-		return 'cool-acceptance';
+		return 'acceptance';
 	}
 	public function get_id() {
-		return 'cool-acceptance';
+		return 'acceptance';
 	}
 	public function get_name() {
 		return esc_html__( 'Acceptance', 'cool-formkit' );

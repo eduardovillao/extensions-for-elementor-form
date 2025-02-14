@@ -69,6 +69,248 @@ class Cool_Form extends Form_Base {
 		$render_strategy->render();
 	}
 
+	protected function content_template() {
+		?>
+		<#
+		view.addRenderAttribute( 'form', 'class', 'cool-form' );
+
+
+		if ( '' !== settings.form_id ) {
+			view.addRenderAttribute( 'form', 'id', settings.form_id );
+		}
+
+		if ( '' !== settings.form_name ) {
+			view.addRenderAttribute( 'form', 'name', settings.form_name );
+		}
+
+		if ( 'custom' === settings.form_validation ) {
+			view.addRenderAttribute( 'form', 'novalidate' );
+		}
+		#>
+		<form {{{ view.getRenderAttributeString( 'form' ) }}}>
+			<div class="cool-form__wrapper">
+				<#
+					for ( var i in settings.form_fields ) {
+						var item = settings.form_fields[ i ];
+						item = elementor.hooks.applyFilters( 'cool_formkit/forms/content_template/item', item, i, settings );
+
+						item.field_type  = _.escape( item.field_type );
+						item.field_value = _.escape( item.field_value );
+
+						var options = item.field_options ? item.field_options.split( '\n' ) : [],
+							itemClasses = _.escape( item.css_classes ),
+							labelVisibility = '',
+							placeholder = '',
+							required = '',
+							inputField = '',
+							multiple = '',
+							fieldGroupClasses = 'cool-form__field-group has-border elementor-column elementor-field-type-' + item.field_type,
+							printLabel = settings.show_labels && ! [ 'hidden', 'html', 'step' ].includes( item.field_type );
+
+						fieldGroupClasses += ' elementor-col-' + ( ( '' !== item.width ) ? item.width : '100' );
+
+						if ( item.width_tablet ) {
+							fieldGroupClasses += ' elementor-md-' + item.width_tablet;
+						}
+
+						if ( item.width_mobile ) {
+							fieldGroupClasses += ' elementor-sm-' + item.width_mobile;
+						}
+
+						if ( item.required ) {
+							required = 'required';
+							fieldGroupClasses += ' elementor-field-required';
+
+							if ( settings.mark_required ) {
+								fieldGroupClasses += ' elementor-mark-required';
+							}
+						}
+
+						if ( item.placeholder ) {
+							placeholder = 'placeholder="' + _.escape( item.placeholder ) + '"';
+						}
+
+						if ( item.allow_multiple ) {
+							multiple = ' multiple';
+							fieldGroupClasses += ' elementor-field-type-' + item.field_type + '-multiple';
+						}
+
+						switch ( item.field_type ) {
+							case 'textarea':
+								inputField = '<textarea class="cool-form__field elementor-field-textual elementor-size-' + settings.input_size + ' ' + itemClasses + '" name="form_field_' + i + '" id="form_field_' + i + '" rows="' + item.rows + '" ' + required + ' ' + placeholder + '>' + item.field_value + '</textarea>';
+								break;
+
+							case 'select':
+								if ( options ) {
+									var size = '';
+									if ( item.allow_multiple && item.select_size ) {
+										size = ' size="' + item.select_size + '"';
+									}
+									inputField = '<div class="elementor-field elementor-select-wrapper ' + itemClasses + '">';
+									inputField += '<select class="elementor-field-textual elementor-size-' + settings.input_size + '" name="form_field_' + i + '" id="form_field_' + i + '" ' + required + multiple + size + ' >';
+									for ( var x in options ) {
+										var option_value = options[ x ];
+										var option_label = options[ x ];
+										var option_id = 'form_field_option' + i + x;
+
+										if ( options[ x ].indexOf( '|' ) > -1 ) {
+											var label_value = options[ x ].split( '|' );
+											option_label = label_value[0];
+											option_value = label_value[1];
+										}
+
+										view.addRenderAttribute( option_id, 'value', option_value );
+										if ( item.field_value.split( ',' ) .indexOf( option_value ) ) {
+											view.addRenderAttribute( option_id, 'selected', 'selected' );
+										}
+										inputField += '<option ' + view.getRenderAttributeString( option_id ) + '>' + option_label + '</option>';
+									}
+									inputField += '</select></div>';
+								}
+								break;
+
+							case 'radio':
+							case 'checkbox':
+								if ( options ) {
+									var multiple = '';
+
+									if ( 'checkbox' === item.field_type && options.length > 1 ) {
+										multiple = '[]';
+									}
+
+									inputField = '<div class="elementor-field-subgroup ' + itemClasses + ' ' + _.escape( item.inline_list ) + '">';
+
+									for ( var x in options ) {
+										var option_value = options[ x ];
+										var option_label = options[ x ];
+										var option_id = 'form_field_' + item.field_type + i + x;
+										if ( options[x].indexOf( '|' ) > -1 ) {
+											var label_value = options[x].split( '|' );
+											option_label = label_value[0];
+											option_value = label_value[1];
+										}
+
+										view.addRenderAttribute( option_id, {
+											value: option_value,
+											type: item.field_type,
+											id: 'form_field_' + i + '-' + x,
+											name: 'form_field_' + i + multiple
+										} );
+
+										if ( option_value ===  item.field_value ) {
+											view.addRenderAttribute( option_id, 'checked', 'checked' );
+										}
+
+										inputField += '<span class="elementor-field-option"><input ' + view.getRenderAttributeString( option_id ) + ' ' + required + '> ';
+										inputField += '<label for="form_field_' + i + '-' + x + '">' + option_label + '</label></span>';
+
+									}
+
+									inputField += '</div>';
+								}
+								break;
+
+							case 'text':
+							case 'email':
+							case 'url':
+							case 'password':
+							case 'number':
+							case 'search':
+							case 'tel':
+								itemClasses = 'elementor-field-textual ' + itemClasses;
+								inputField = '<input size="1" type="' + item.field_type + '" value="' + item.field_value + '" class="cool-form__field elementor-size-' + settings.input_size + ' ' + itemClasses + '" name="form_field_' + i + '" id="form_field_' + i + '" ' + required + ' ' + placeholder + ' >';
+								break;
+							default:
+								item.placeholder = _.escape( item.placeholder );
+								inputField = elementor.hooks.applyFilters( 'elementor_pro/forms/content_template/field/' + item.field_type, '', item, i, settings );
+						}
+
+						if ( inputField ) {
+							#>
+							<div class="{{ fieldGroupClasses }}">
+
+								<# if ( printLabel && item.field_label ) { #>
+									<label class="cool-form__field-label" for="form_field_{{ i }}" {{{ labelVisibility }}}>{{{ item.field_label }}}</label>
+								<# } #>
+
+								{{{ inputField }}}
+							</div>
+							<#
+						}
+					}
+
+					view.addRenderAttribute(
+						'submit-group',
+						{
+							'class': [
+								'cool-form__submit-group',
+								'elementor-column',
+								'elementor-field-type-submit',
+								'e-form__buttons',
+								'elementor-col-' + ( ( '' !== settings.button_width ) ? settings.button_width : '100' )
+							]
+						}
+					);
+
+					if ( settings.button_width_tablet ) {
+						view.addRenderAttribute( 'submit-group', 'class', 'elementor-md-' + settings.button_width_tablet );
+					}
+
+					if ( settings.button_width_mobile ) {
+						view.addRenderAttribute( 'submit-group', 'class', 'elementor-sm-' + settings.button_width_mobile );
+					}
+
+					view.addRenderAttribute( 'button', 'type', 'submit' );
+					view.addRenderAttribute( 'button', 'class', 'cool-form__button is-type-button' );
+
+					if ( '' !== settings.button_css_id ) {
+						view.addRenderAttribute( 'button', 'id', settings.button_css_id );
+					}
+
+					if ( '' !== settings.button_size ) {
+						view.addRenderAttribute( 'button', 'class', 'elementor-size-' + settings.button_size );
+					}
+
+					if ( '' !== settings.button_type ) {
+						view.addRenderAttribute( 'button', 'class', 'elementor-button-' + settings.button_type );
+					}
+
+					if ( '' !== settings.button_hover_animation ) {
+						view.addRenderAttribute( 'button', 'class', 'elementor-animation-' + settings.button_hover_animation );
+					}
+
+					view.addRenderAttribute( 'button-content-wrapper', 'class', 'elementor-button-content-wrapper' );
+					view.addRenderAttribute( 'button-icon', 'class', 'elementor-button-icon' );
+					view.addRenderAttribute( 'button-text', 'class', 'elementor-button-text' );
+
+					const iconHTML = elementor.helpers.renderIcon( view, settings.selected_button_icon, { 'aria-hidden': true }, 'i' , 'object' );
+					const migrated = elementor.helpers.isIconMigrated( settings, 'selected_button_icon' );
+					#>
+					<div {{{ view.getRenderAttributeString( 'submit-group' ) }}}>
+						<button {{{ view.getRenderAttributeString( 'button' ) }}}>
+							<span {{{ view.getRenderAttributeString( 'button-content-wrapper' ) }}}>
+								<# if ( settings.button_icon || settings.selected_button_icon ) { #>
+									<span {{{ view.getRenderAttributeString( 'button-icon' ) }}}>
+										<# if ( iconHTML && iconHTML.rendered && ( ! settings.button_icon || migrated ) ) { #>
+											{{{ iconHTML.value }}}
+										<# } else { #>
+											<i class="{{ settings.button_icon }}" aria-hidden="true"></i>
+										<# } #>
+										<span class="elementor-screen-only"><?php echo esc_html__( 'Submit', 'elementor-pro' ); ?></span>
+									</span>
+								<# } #>
+
+								<# if ( settings.button_text ) { #>
+									<span {{{ view.getRenderAttributeString( 'button-text' ) }}}>{{{ settings.button_text }}}</span>
+								<# } #>
+							</span>
+						</button>
+					</div>
+			</div>
+		</form>
+		<?php
+	}
+
 	protected function register_controls() {
 		$this->add_content_form_fields_section();
 		$this->add_content_button_section();
@@ -89,10 +331,10 @@ class Cool_Form extends Form_Base {
 			'text' => esc_html__( 'Text', 'cool-formkit' ),
 			'email' => esc_html__( 'Email', 'cool-formkit' ),
 			'textarea' => esc_html__( 'Textarea', 'cool-formkit' ),
-			'cool_tel' => esc_html__( 'Tel', 'cool-formkit' ),
+			'tel' => esc_html__( 'Tel', 'cool-formkit' ),
 			'select' => esc_html__( 'Select', 'cool-formkit' ),
-			'cool-acceptance' => esc_html__( 'Acceptance', 'cool-formkit' ),
-			'cool_number' => esc_html__( 'Number', 'cool-formkit' ),
+			'acceptance' => esc_html__( 'Acceptance', 'cool-formkit' ),
+			'number' => esc_html__( 'Number', 'cool-formkit' ),
 		];
 
 		$repeater->start_controls_tabs( 'form_fields_tabs' );
@@ -135,11 +377,11 @@ class Cool_Form extends Form_Base {
 							'name' => 'field_type',
 							'operator' => 'in',
 							'value' => [
-								'cool_tel',
+								'tel',
 								'text',
 								'email',
 								'textarea',
-								'cool_number',
+								'number',
 							],
 						],
 					],
@@ -296,8 +538,8 @@ class Cool_Form extends Form_Base {
 								'text',
 								'email',
 								'textarea',
-								'cool_tel',
-								'cool_number',
+								'tel',
+								'number',
 								'select',
 							],
 						],
@@ -933,8 +1175,7 @@ class Cool_Form extends Form_Base {
 					'{{WRAPPER}} .cool-form' => '--cool-form-field-border-color: {{VALUE}};',
 				],
 				'global' => [
-					// 'default' => Global_Colors::COLOR_SECONDARY,
-					'default' => '#69727d',
+					'default' => Global_Colors::COLOR_SECONDARY,
 				],
 				'separator' => 'before',
 				'condition' => [

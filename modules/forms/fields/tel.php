@@ -11,7 +11,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 class Tel extends Field_Base {
 
 	public function get_type() {
-		return 'cool_tel';
+		return 'tel';
 	}
 
 	public function get_name() {
