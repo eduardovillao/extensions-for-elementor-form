@@ -38,18 +38,13 @@ class Number extends Field_Base {
 		<?php
 	}
 
-	public static function elementor() {
-		return \Elementor\Plugin::$instance;
-	}
 	/**
 	 * @param Widget_Base $widget
 	 */
 	public function update_controls( $widget ) {
-		// $elementor = \Elementor\Plugin::$instance;
-		$elementor = Number::elementor();
+		$elementor = parent::elementor();
 
 		$control_data = $elementor->controls_manager->get_control_from_stack( $widget->get_unique_name(), 'form_fields' );
-		// $control_data = $elementor->controls_manager->get_control_from_stack( 'cool-form', 'cool_form_fields' );
 
 
 		if ( is_wp_error( $control_data ) ) {

@@ -67,9 +67,16 @@ class Cool_Formkit_Lite_For_Elementor_Form {
 			$this->initialize_plugin();
 
 			// add_action( 'activated_plugin', array( $this, 'EEF_plugin_redirection' ) );
+			add_action('wp_enqueue_scripts', array($this,'my_enqueue_scripts'));
+
 		}
 	}
 
+	public function my_enqueue_scripts(){
+		wp_register_script( 'handle-date-pickr', CFL_PLUGIN_URL . 'assets/js/flatpickr/handle-date-pickr.js', array('elementor-frontend','jquery'), CFL_VERSION, true );
+
+		wp_register_script( 'handle-time-pickr', CFL_PLUGIN_URL . 'assets/js/flatpickr/handle-time-pickr.js', array('elementor-frontend','jquery'), CFL_VERSION, true );
+	}
 	/**
      * Singleton instance.
      *

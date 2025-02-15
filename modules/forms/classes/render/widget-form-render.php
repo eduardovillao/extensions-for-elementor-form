@@ -141,7 +141,7 @@ class Widget_Form_Render {
 
 							case 'text':
 							case 'email':
-								$this->widget->add_render_attribute( 'input' . $item_index, 'class', 'elementor-field-textual' );
+								$this->widget->add_render_attribute( 'input' . $item_index, 'class', 'cool-form-field-textual' );
 								?>
 								<input size="1" <?php $this->widget->print_render_attribute_string( 'input' . $item_index ); ?>>
 								<?php

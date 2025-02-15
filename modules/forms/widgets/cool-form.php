@@ -216,7 +216,7 @@ class Cool_Form extends Form_Base {
 							case 'password':
 							case 'number':
 							case 'search':
-								itemClasses = 'elementor-field-textual ' + itemClasses;
+								itemClasses = 'cool-form-field-textual ' + itemClasses;
 								inputField = '<input size="1" type="' + item.field_type + '" value="' + item.field_value + '" class="cool-form__field elementor-size-' + settings.input_size + ' ' + itemClasses + '" name="form_field_' + i + '" id="form_field_' + i + '" ' + required + ' ' + placeholder + ' >';
 								break;
 							default:
@@ -334,6 +334,8 @@ class Cool_Form extends Form_Base {
 			'select' => esc_html__( 'Select', 'cool-formkit' ),
 			'acceptance' => esc_html__( 'Acceptance', 'cool-formkit' ),
 			'number' => esc_html__( 'Number', 'cool-formkit' ),
+			'date' => esc_html__( 'Date', 'cool-formkit' ),
+			'time' => esc_html__( 'Time', 'cool-formkit' ),
 		];
 
 		$repeater->start_controls_tabs( 'form_fields_tabs' );
@@ -381,6 +383,8 @@ class Cool_Form extends Form_Base {
 								'email',
 								'textarea',
 								'number',
+								'date',
+								'time',
 							],
 						],
 					],
@@ -540,6 +544,8 @@ class Cool_Form extends Form_Base {
 								'textarea',
 								'tel',
 								'number',
+								'date',
+								'time',
 								'select',
 							],
 						],

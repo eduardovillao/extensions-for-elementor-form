@@ -72,6 +72,10 @@ abstract class Field_Base {
 		return sanitize_text_field( $value );
 	}
 
+    public static function elementor() {
+		return \Elementor\Plugin::$instance;
+	}
+
 	public function inject_field_controls( $data, $controls_to_inject ) {
 		$keys = array_keys( $data );
 		$key_index = array_search( 'required', $keys, true ) + 1;

@@ -10,11 +10,14 @@ export default class FormsModule extends elementorModules.editor.utils.Module {
 
 		// Form fields
 		const AcceptanceField = require( './fields/acceptance' ),
-			TelField = require( './fields/tel' );
+			TelField = require( './fields/tel' ),DateField = require( './fields/date' ),
+			TimeField = require( './fields/time' );
 
 		this.Fields = {
 			tel: new TelField( 'cool-form' ),
 			acceptance: new AcceptanceField( 'cool-form' ),
+			date: new DateField( 'cool-form' ),
+			time: new TimeField( 'cool-form' ),
 		};
 
 		elementor.addControlView( 'Fields_map', FieldsMapControl );

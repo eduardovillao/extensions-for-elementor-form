@@ -42,9 +42,8 @@ abstract class Form_Base extends Widget_Base {
 			'class' => [
 				'elementor-field-textual',
 				'cool-form__field',
-				'eph-form__textarea',
+				'cool-form__textarea',
 				esc_attr( $item['css_classes'] ),
-				'elementor-size-' . $item['input_size'],
 			],
 			'name' => $this->get_attribute_name( $item ),
 			'id' => $this->get_attribute_id( $item ),
@@ -70,7 +69,6 @@ abstract class Form_Base extends Widget_Base {
 				'select-wrapper' . $i => [
 					'class' => [
 						'cool-form__field',
-						'elementor-field',
 						'cool-form__select',
 						'remove-before',
 						esc_attr( $item['css_classes'] ),
@@ -80,9 +78,8 @@ abstract class Form_Base extends Widget_Base {
 					'name' => $this->get_attribute_name( $item ) . ( ! empty( $item['allow_multiple'] ) ? '[]' : '' ),
 					'id' => $this->get_attribute_id( $item ),
 					'class' => [
-						'elementor-field-textual',
+						'cool-form-field-textual',
 						'cool-form__field',
-						'elementor-size-' . $item['input_size'],
 					],
 				],
 			]
@@ -207,7 +204,7 @@ abstract class Form_Base extends Widget_Base {
 					'id' => $this->get_attribute_id( $item ),
 					'class' => [
 						'cool-form__field',
-						'elementor-size-' . $item['input_size'],
+						'cool-form-field-type-' . $item['field_type'],
 						empty( $item['css_classes'] ) ? '' : esc_attr( $item['css_classes'] ),
 					],
 				],
