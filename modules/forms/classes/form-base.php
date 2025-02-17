@@ -148,7 +148,7 @@ abstract class Form_Base extends Widget_Base {
 		return $select;
 	}
 
-	protected function make_radio_checkbox_field( $item, $item_index, $type ): string {
+	public function make_radio_checkbox_field( $item, $item_index, $type ): string {
 		$options = preg_split( "/\\r\\n|\\r|\\n/", $item['field_options'] );
 		$html = '';
 		if ( $options ) {

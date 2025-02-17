@@ -336,6 +336,8 @@ class Cool_Form extends Form_Base {
 			'number' => esc_html__( 'Number', 'cool-formkit' ),
 			'date' => esc_html__( 'Date', 'cool-formkit' ),
 			'time' => esc_html__( 'Time', 'cool-formkit' ),
+			'checkbox' => esc_html__( 'Checkbox', 'cool-formkit' ),
+			'radio' => esc_html__( 'Radio', 'cool-formkit' ),
 		];
 
 		$repeater->start_controls_tabs( 'form_fields_tabs' );
@@ -402,6 +404,22 @@ class Cool_Form extends Form_Base {
 				'type' => Controls_Manager::SWITCHER,
 				'return_value' => 'true',
 				'default' => '',
+				'conditions' => [
+					'terms' => [
+						[
+							'name' => 'field_type',
+							'operator' => '!in',
+							'value' => [
+								'checkbox',
+								'recaptcha',
+								'recaptcha_v3',
+								'hidden',
+								'html',
+								'step',
+							],
+						],
+					],
+				],
 			]
 		);
 
@@ -419,6 +437,8 @@ class Cool_Form extends Form_Base {
 							'operator' => 'in',
 							'value' => [
 								'select',
+								'checkbox',
+								'radio',
 							],
 						],
 					],
@@ -459,6 +479,28 @@ class Cool_Form extends Form_Base {
 						[
 							'name' => 'allow_multiple',
 							'value' => 'true',
+						],
+					],
+				],
+			]
+		);
+
+		$repeater->add_control(
+			'inline_list',
+			[
+				'label' => esc_html__( 'Inline List', 'cool-formkit' ),
+				'type' => Controls_Manager::SWITCHER,
+				'return_value' => 'elementor-subgroup-inline',
+				'default' => '',
+				'conditions' => [
+					'terms' => [
+						[
+							'name' => 'field_type',
+							'operator' => 'in',
+							'value' => [
+								'checkbox',
+								'radio',
+							],
 						],
 					],
 				],

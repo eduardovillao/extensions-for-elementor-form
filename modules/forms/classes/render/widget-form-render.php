@@ -138,7 +138,10 @@ class Widget_Form_Render {
 									],
 								] );
 								break;
-
+							case 'radio':
+							case 'checkbox':
+								echo $this->widget->make_radio_checkbox_field( $item, $item_index, $item['field_type'] ); 
+								break;
 							case 'text':
 							case 'email':
 								$this->widget->add_render_attribute( 'input' . $item_index, 'class', 'cool-form-field-textual' );
