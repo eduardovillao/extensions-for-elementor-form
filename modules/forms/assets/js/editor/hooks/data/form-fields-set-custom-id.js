@@ -4,7 +4,7 @@ export class FormFieldsSetCustomId extends $e.modules.hookData.After {
 	}
 
 	getId() {
-		return 'elementor-pro-forms-fields-set-custom-id';
+		return 'cool-forms-fields-set-custom-ids';
 	}
 
 	getContainerType() {

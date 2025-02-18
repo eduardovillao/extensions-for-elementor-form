@@ -1,16 +1,17 @@
 <?php
 /**
- * Plugin Name: Cool Formkit Lite
+ * Plugin Name: Cool FormKit Lite
  * Plugin URI: https://coolplugins.net/
  * Description: This plugin empowers your Elementor Forms with advanced functionality that simplifies workflows, improves usability, and integrates seamlessly with tools like WhatsApp.
  * Author: Cool Plugins
  * Author URI: https://coolplugins.net/
  * Text Domain: extensions-for-elementor-form
  * Version: 2.3
- * Requires at least: 5.5
- * Requires PHP: 7.4
+ * Requires at least: 6.2
+ * Requires PHP: 8.2
  * License: GPL-2.0+
  * License URI: http://www.gnu.org/licenses/gpl-2.0.txt
+ * Requires Plugins: elementor
  */
 
 namespace Cool_FormKit;

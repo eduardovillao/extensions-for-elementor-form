@@ -6,7 +6,7 @@ export class FormSanitizeId extends $e.modules.hookData.Dependency {
 	}
 
 	getId() {
-		return 'elementor-pro-forms-sanitize-id';
+		return 'cool-forms-sanitize-ids';
 	}
 
 	getContainerType() {

@@ -30,7 +30,7 @@ class Cool_Form extends Form_Base {
 	}
 
 	public function get_icon() {
-		return 'eicon-ehp-forms';
+		return 'cool-forms-icon';
 	}
 
 	public function get_keywords() {
@@ -56,11 +56,11 @@ class Cool_Form extends Form_Base {
 	 * @return array Widget style dependencies.
 	 */
 	public function get_style_depends(): array {
-		return [ 'Cool_FormKit-forms' ];
+		return [ 'Cool_FormKit-forms','cool-form-material-css' ];
 	}
 
 	public function get_script_depends(): array {
-		return [ 'Cool_FormKit-forms-fe' ];
+		return [ 'Cool_FormKit-forms-fe','cool-form-material-js' ];
 	}
 
 	protected function render(): void {
@@ -108,6 +108,8 @@ class Cool_Form extends Form_Base {
 							printLabel = settings.show_labels && ! [ 'hidden', 'html', 'step' ].includes( item.field_type );
 
 						fieldGroupClasses += ' elementor-col-' + ( ( '' !== item.width ) ? item.width : '100' );
+
+						fieldGroupClasses += ' has-shape-' + settings.fields_shape
 
 						if ( item.width_tablet ) {
 							fieldGroupClasses += ' elementor-md-' + item.width_tablet;
@@ -339,6 +341,8 @@ class Cool_Form extends Form_Base {
 			'checkbox' => esc_html__( 'Checkbox', 'cool-formkit' ),
 			'radio' => esc_html__( 'Radio', 'cool-formkit' ),
 		];
+
+		$field_types = apply_filters( 'cool_formkit/forms/field_types', $field_types );
 
 		$repeater->start_controls_tabs( 'form_fields_tabs' );
 

@@ -60,6 +60,13 @@ class Module extends Module_Base {
 			[ 'elementor-frontend' ],
 			CFL_VERSION
 		);
+
+		wp_register_style(
+			'cool-form-material-css',
+			CFL_PLUGIN_URL . 'assets/css/Material-css/material.css',
+			[ 'elementor-frontend' ],
+			CFL_VERSION
+		);
 	}
 
 	public static function find_element_recursive( $elements, $form_id ) {
@@ -108,6 +115,15 @@ class Module extends Module_Base {
 		wp_register_script(
 			'Cool_FormKit-forms-fe',
 			CFL_SCRIPTS_URL . 'Cool_FormKit-forms-fe.js',
+			// [ 'elementor-common', 'elementor-frontend-modules', 'elementor-frontend' ],
+			[ 'elementor-frontend' ],
+			CFL_VERSION,
+			true
+		);
+
+		wp_register_script(
+			'cool-form-material-js',
+			CFL_PLUGIN_URL . 'assets/js/Material-js/material.js',
 			// [ 'elementor-common', 'elementor-frontend-modules', 'elementor-frontend' ],
 			[ 'elementor-frontend' ],
 			CFL_VERSION,

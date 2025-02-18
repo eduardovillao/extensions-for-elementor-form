@@ -22,6 +22,8 @@ export default class FormsModule extends elementorModules.editor.utils.Module {
 
 		elementor.addControlView( 'Fields_map', FieldsMapControl );
 		elementor.addControlView( 'form-fields-repeater', FieldsRepeaterControl );
+
+		this.onElementorInitComponents();
 	}
 
 	onElementorInitComponents() {

@@ -3,6 +3,23 @@ $editor-background-light:#f0f0f0;
 $editor-background:#f0f0f0;
 // Fields Map (Based on Repeater control)
 
+.cool-forms-icon {
+	width: 128px;
+	height: 20px;
+	position: relative;
+  
+	&::before {
+	  content: "";
+	  background: url(../images/cool-formkit-lite-icon.png) no-repeat center center;
+	  top: -4px;
+	  left: 0;
+	  width: 100%;
+	  height: 30px;
+	  background-size: 30px 30px;
+	  display: inline-block;
+	}
+}
+  
 .elementor-panel {
 
 	.elementor-control-type-fields_map {

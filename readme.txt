@@ -1,11 +1,10 @@
 === Cool Formkit Lite ===
-Contributors: EVCODE
-Donate link: https://eduardovillao.me/
+Contributors: coolplugins, narinder-singh, satindersingh
 Tags: elementor, elementor form, register custom post type, whatsapp
-Requires at least: 5.5
-Tested up to: 6.7
+Requires at least: 6.2
+Tested up to: 6.7.1
 Stable tag: 2.3
-Requires PHP: 7.4
+Requires PHP: 8.2
 License: GPL-2.0+
 URI:https://www.gnu.org/licenses/gpl-2.0.html
 

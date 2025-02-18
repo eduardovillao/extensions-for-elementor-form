@@ -36,5 +36,17 @@ class Form_Fields_Registrar extends Registrar {
 		$this->register( new Fields\Date() );
 		$this->register( new Fields\Time() );
 		$this->register( new Fields\Step() );
+
+		/**
+		 * Cool form fields registration.
+		 *
+		 * Fires when a new form field is registered. This hook allows developers to
+		 * register new form fields.
+		 *
+		 * @param Form_Actions_Registrar $this An instance of form fields registration
+		 *                                     manager.
+		*/
+
+		do_action( 'cool_formkit/forms/fields/register', $this );
 	}
 }
